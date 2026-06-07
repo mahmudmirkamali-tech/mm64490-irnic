@@ -1,0 +1,14 @@
+{
+  "name": "parvaaz-bitesf",
+  "version": "1.0.0",
+  "private": true,
+  "description": "پلتفرم پرواز — bitesf.ir & presf.ir",
+  "scripts": {
+    "dev": "powershell -ExecutionPolicy Bypass -File server.ps1",
+    "sync-domains": "powershell -ExecutionPolicy Bypass -File sync-domains.ps1",
+    "deploy:host": "powershell -ExecutionPolicy Bypass -File deploy-ftp.ps1",
+    "deploy:host:dry": "powershell -ExecutionPolicy Bypass -File deploy-ftp.ps1 -DryRun",
+    "deploy:cf": "npx wrangler pages deploy . --project-name=parvaaz-bitesf",
+    "deploy:preview": "npx wrangler pages deploy . --project-name=parvaaz-bitesf --branch=preview"
+  }
+}

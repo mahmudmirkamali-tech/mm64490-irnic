@@ -1,0 +1,6 @@
+name = "parvaaz-bitesf"
+compatibility_date = "2024-06-01"
+pages_build_output_dir = "."
+
+# کلید API را در داشبورد Cloudflare Pages → Settings → Environment variables تنظیم کنید:
+# ANTHROPIC_API_KEY = sk-ant-...

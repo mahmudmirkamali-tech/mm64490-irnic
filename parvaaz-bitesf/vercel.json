@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "name": "parvaaz-bitesf",
+  "rewrites": [
+    { "source": "/api/chat", "destination": "/api/chat.js" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    }
+  ]
+}

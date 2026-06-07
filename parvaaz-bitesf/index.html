@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#c9a84c">
+<meta name="description" content="پلتفرم هوشمند چندخدماتی — حقوق، بیمه، بورس، ارز دیجیتال، کارپردازی">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="پرواز">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="canonical" id="canonical-link" href="https://presf.ir/">
+<script src="/site-config.js"></script>
+<title>موسسه محمود | پلتفرم هوشمند چندخدماتی</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#c9a84c;--gold2:#e8c97a;--gold3:#f5e0a0;
+  --dark:#080a0f;--dark2:#0f1218;--dark3:#161c28;--dark4:#1e2535;
+  --text:#f0ede6;--text2:#b8b4aa;--text3:#6a6660;
+  --border:rgba(201,168,76,0.2);--border2:rgba(201,168,76,0.07);
+  --green:#22c55e;--blue:#3b82f6;--red:#ef4444;--purple:#a855f7;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'Vazirmatn',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;min-height:100vh}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:'Vazirmatn',sans-serif}
+input,textarea,select{font-family:'Vazirmatn',sans-serif;direction:rtl}
+
+/* ====== ANIMATIONS ====== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+
+/* ====== TOAST ====== */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--dark3);border:1px solid var(--gold);border-radius:12px;padding:12px 24px;font-size:13px;z-index:9999;animation:fadeUp .3s ease;box-shadow:0 8px 32px rgba(0,0,0,.6);white-space:nowrap;max-width:90vw;text-align:center}
+
+/* ====== INSTALL BANNER ====== */
+#install-banner{display:none;position:fixed;bottom:70px;right:12px;left:12px;z-index:998;background:var(--dark3);border:1px solid var(--gold);border-radius:14px;padding:14px 16px;box-shadow:0 8px 32px rgba(0,0,0,.7)}
+#install-banner.show{display:flex;align-items:center;gap:12px}
+.ib-icon{font-size:26px;flex-shrink:0}
+.ib-text h4{font-size:13px;font-weight:700;color:var(--gold)}
+.ib-text p{font-size:11px;color:var(--text2);margin-top:2px}
+.ib-btns{display:flex;gap:7px;margin-right:auto;flex-shrink:0}
+.ib-install{padding:7px 16px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);border:none;border-radius:8px;font-size:12px;font-weight:700}
+.ib-close{padding:7px 10px;background:transparent;color:var(--text3);border:1px solid var(--border2);border-radius:8px;font-size:12px}
+
+/* ====== NAV ====== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;display:flex;align-items:center;padding:0 20px;background:rgba(8,10,15,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2);gap:12px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.nav-logo-text{font-size:15px;font-weight:800;color:var(--gold)}
+.nav-logo-sub{font-size:10px;color:var(--text3);margin-top:-2px}
+nav .spacer{flex:1}
+.nav-admin-btn{padding:7px 14px;background:rgba(201,168,76,.1);border:1px solid var(--border);border-radius:8px;color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px}
+.nav-menu-btn{width:36px;height:36px;background:transparent;border:1px solid var(--border2);border-radius:8px;color:var(--text2);font-size:18px;display:flex;align-items:center;justify-content:center}
+
+/* ====== BOTTOM NAV ====== */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;height:62px;background:rgba(8,10,15,.98);border-top:1px solid var(--border2);display:flex;align-items:center;backdrop-filter:blur(20px)}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;padding:6px 0;transition:all .2s;border:none;background:transparent;color:var(--text3)}
+.bn-item.active{color:var(--gold)}
+.bn-item:active{transform:scale(.9)}
+.bn-icon{font-size:20px;line-height:1}
+.bn-label{font-size:9px;font-weight:600;letter-spacing:.3px}
+.bn-badge{position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:var(--red);border-radius:50%;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.bn-icon-wrap{position:relative;display:inline-block}
+
+/* ====== PAGES ====== */
+.page{display:none;min-height:calc(100vh - 62px - 62px);padding:72px 0 70px;animation:fadeIn .3s ease}
+.page.active{display:block}
+
+/* ====== HERO / HOME ====== */
+.hero{padding:0 18px 24px;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 100% 80% at 50% 30%,rgba(201,168,76,.08),transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border:1px solid var(--border);border-radius:30px;font-size:11px;color:var(--gold);margin:20px 0 16px;background:rgba(201,168,76,.06)}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite;flex-shrink:0}
+.hero h1{font-size:clamp(22px,6vw,36px);font-weight:900;line-height:1.3;margin-bottom:12px}
+.hero h1 span{background:linear-gradient(135deg,var(--gold),var(--gold2),var(--gold3),var(--gold));background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+.hero p{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:20px;padding:0 8px}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-primary{padding:12px 24px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);border:none;border-radius:10px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;transition:transform .2s}
+.btn-primary:active{transform:scale(.96)}
+.btn-secondary{padding:12px 20px;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:10px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px;padding:0 4px}
+.stat-box{background:var(--dark2);border:1px solid var(--border2);border-radius:12px;padding:14px 8px;text-align:center}
+.stat-num{font-size:20px;font-weight:900;color:var(--gold);line-height:1}
+.stat-lbl{font-size:9px;color:var(--text3);margin-top:3px;line-height:1.3}
+
+/* ====== SERVICE GRID ====== */
+.section{padding:0 16px;margin-bottom:28px}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.section-title{font-size:15px;font-weight:800;color:var(--text)}
+.section-title span{color:var(--gold)}
+.see-all{font-size:12px;color:var(--gold)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.service-card{background:var(--dark2);border:1px solid var(--border2);border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.06),transparent);opacity:0;transition:opacity .3s}
+.service-card:active{transform:scale(.95);border-color:var(--border)}
+.service-card:active::before{opacity:1}
+.sc-icon{font-size:26px;margin-bottom:8px;display:block}
+.sc-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px}
+.sc-desc{font-size:9px;color:var(--text3);line-height:1.4}
+.sc-badge{position:absolute;top:8px;left:8px;padding:2px 7px;border-radius:10px;font-size:9px;font-weight:700}
+.sc-badge.new{background:rgba(34,197,94,.2);color:var(--green);border:1px solid rgba(34,197,94,.3)}
+.sc-badge.hot{background:rgba(239,68,68,.2);color:var(--red);border:1px solid rgba(239,68,68,.3)}
+
+/* ====== AI CHAT PAGE ====== */
+.chat-page{display:flex;flex-direction:column;height:calc(100vh - 62px - 62px);padding-top:62px}
+.chat-header{padding:12px 16px;border-bottom:1px solid var(--border2);background:var(--dark2);display:flex;align-items:center;gap:10px}
+.chat-av{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.chat-info h3{font-size:13px;font-weight:700;color:var(--gold)}
+.chat-info p{font-size:10px;color:var(--text3)}
+.chat-online{margin-right:auto;display:flex;align-items:center;gap:5px;font-size:11px;color:var(--green)}
+.chat-online::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+.chat-clear-btn{padding:5px 10px;background:transparent;border:1px solid var(--border2);border-radius:7px;color:var(--text3);font-size:10px}
+.chat-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.chat-messages::-webkit-scrollbar{width:2px}
+.msg{display:flex;gap:8px;animation:fadeUp .25s ease}
+.msg.user{flex-direction:row-reverse}
+.msg-av{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px}
+.msg.ai .msg-av{background:linear-gradient(135deg,var(--gold),var(--gold2))}
+.msg.user .msg-av{background:var(--dark4)}
+.msg-content{max-width:80%}
+.msg-bubble{padding:10px 13px;border-radius:12px;font-size:13px;line-height:1.7}
+.msg.ai .msg-bubble{background:var(--dark3);border:1px solid var(--border2);border-top-right-radius:3px}
+.msg.user .msg-bubble{background:rgba(201,168,76,.13);border:1px solid var(--border);border-top-left-radius:3px}
+.msg-time{font-size:9px;color:var(--text3);margin-top:3px;padding:0 3px}
+.msg.user .msg-time{text-align:right}
+.typing-ind{display:flex;gap:4px;padding:12px 13px}
+.dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:bounce 1.2s infinite;opacity:.6}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+.chat-topics{display:flex;gap:7px;flex-wrap:wrap;padding:8px 14px;border-top:1px solid var(--border2)}
+.topic-btn{padding:6px 12px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--text2);font-size:11px;white-space:nowrap}
+.topic-btn:active{border-color:var(--gold);color:var(--gold)}
+.chat-input-area{padding:10px 14px;border-top:1px solid var(--border2);display:flex;gap:8px;align-items:flex-end;background:var(--dark)}
+#chat-input{flex:1;background:var(--dark3);border:1px solid var(--border2);border-radius:10px;padding:10px 13px;color:var(--text);font-size:13px;outline:none;resize:none;max-height:80px;direction:rtl;line-height:1.5}
+#chat-input:focus{border-color:var(--gold)}
+#chat-input::placeholder{color:var(--text3)}
+#chat-send{width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);border:none;border-radius:10px;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+#chat-send:disabled{opacity:.4}
+.chat-quota-wrap{margin-right:auto;text-align:left}
+.chat-quota{font-size:10px;color:var(--text3);margin-top:2px}
+.chat-quota-bar{width:80px;height:3px;background:var(--dark4);border-radius:2px;margin-top:4px;overflow:hidden}
+.chat-quota-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;transition:width .3s}
+.quota-warn{padding:10px 14px;background:rgba(239,68,68,.08);border-top:1px solid rgba(239,68,68,.2);font-size:11px;color:#fca5a5;line-height:1.6;display:none}
+.quota-warn.show{display:block}
+.quota-warn button{margin-top:8px;padding:7px 14px;background:var(--gold);color:var(--dark);border:none;border-radius:8px;font-size:11px;font-weight:700}
+.referral-box{background:var(--dark2);border:1px solid var(--border2);border-radius:14px;padding:14px;margin:0 14px 14px}
+.referral-code{display:flex;align-items:center;gap:8px;margin:10px 0}
+.referral-code input{flex:1;background:var(--dark3);border:1px solid var(--border2);border-radius:8px;padding:9px 12px;color:var(--gold);font-size:13px;font-weight:700;text-align:center;direction:ltr}
+.referral-tier{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border2);font-size:11px}
+.referral-tier:last-child{border-bottom:none}
+.referral-tier.done .referral-tier-icon{opacity:1}
+.referral-tier-icon{font-size:18px;opacity:.4;flex-shrink:0}
+.referral-tier-info{flex:1;color:var(--text2);line-height:1.5}
+.referral-tier-info strong{color:var(--text)}
+.referral-tier-badge{font-size:10px;padding:3px 8px;border-radius:12px;background:rgba(201,168,76,.1);color:var(--gold);white-space:nowrap}
+
+/* Payment card */
+.pay-box{background:linear-gradient(135deg,rgba(201,168,76,.12),var(--dark3));border:1px solid var(--border);border-radius:14px;padding:14px;margin:12px 0}
+.pay-box-title{font-size:12px;font-weight:700;color:var(--gold);margin-bottom:8px}
+.pay-card-num{font-size:15px;font-weight:900;letter-spacing:1px;direction:ltr;text-align:center;padding:10px;background:var(--dark);border-radius:10px;color:var(--gold2);margin:8px 0}
+.pay-card-name{font-size:12px;color:var(--text2);text-align:center}
+.pay-copy-btn{width:100%;margin-top:8px;padding:9px;background:rgba(201,168,76,.15);border:1px solid var(--border);border-radius:8px;color:var(--gold);font-size:12px;font-weight:700}
+
+/* Charity pipeline */
+.pipeline{display:flex;gap:4px;padding:0 16px 16px;overflow-x:auto}
+.pipe-step{flex:1;min-width:70px;text-align:center;position:relative}
+.pipe-dot{width:28px;height:28px;border-radius:50%;background:var(--dark4);border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:11px;margin:0 auto 6px;font-weight:700;color:var(--text3)}
+.pipe-step.active .pipe-dot{background:rgba(201,168,76,.2);border-color:var(--gold);color:var(--gold)}
+.pipe-step.done .pipe-dot{background:var(--gold);border-color:var(--gold);color:var(--dark)}
+.pipe-lbl{font-size:9px;color:var(--text3);line-height:1.3}
+.charity-card{background:var(--dark2);border:1px solid var(--border2);border-radius:14px;padding:14px;margin:0 16px 10px}
+.charity-card-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.charity-tag{font-size:9px;padding:3px 8px;border-radius:10px;font-weight:700}
+.tag-urgent{background:rgba(239,68,68,.15);color:var(--red)}
+.tag-normal{background:rgba(59,130,246,.15);color:var(--blue)}
+.tag-matched{background:rgba(34,197,94,.15);color:var(--green)}
+.verified-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--green);padding:3px 8px;background:rgba(34,197,94,.1);border-radius:8px;border:1px solid rgba(34,197,94,.2)}
+.ai-agent-box{background:var(--dark3);border:1px solid var(--border);border-radius:12px;padding:12px;margin:0 16px 14px}
+.ai-agent-hdr{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.ai-agent-hdr span{font-size:12px;font-weight:700;color:var(--gold)}
+.ai-agent-out{font-size:11px;color:var(--text2);line-height:1.7;min-height:40px}
+
+/* Careers HR */
+.career-steps{display:flex;gap:6px;padding:0 16px 14px}
+.career-step{flex:1;height:4px;border-radius:2px;background:var(--dark4)}
+.career-step.done,.career-step.active{background:var(--gold)}
+.hr-chat{max-height:220px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.hr-msg{padding:8px 11px;border-radius:10px;font-size:12px;line-height:1.6;max-width:90%}
+.hr-msg.ai{background:var(--dark3);border:1px solid var(--border2);align-self:flex-start}
+.hr-msg.user{background:rgba(201,168,76,.12);border:1px solid var(--border);align-self:flex-end}
+
+/* ====== TOOLS PAGE ====== */
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
+.tool-card{background:var(--dark2);border:1px solid var(--border2);border-radius:14px;padding:18px 14px;cursor:pointer;transition:all .25s;text-align:center}
+.tool-card:active{transform:scale(.95);border-color:var(--border)}
+.tool-icon{font-size:28px;margin-bottom:8px}
+.tool-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px}
+.tool-desc{font-size:10px;color:var(--text3);line-height:1.4}
+
+/* ====== MODAL ====== */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--dark2);border-radius:24px 24px 0 0;width:100%;max-height:90vh;overflow-y:auto;padding:20px 20px 30px;transform:translateY(100%);transition:transform .3s ease;border-top:1px solid var(--border)}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 18px}
+.modal-title{font-size:17px;font-weight:800;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.modal-close{margin-right:auto;width:30px;height:30px;background:var(--dark4);border:none;border-radius:8px;color:var(--text2);font-size:16px}
+
+/* ====== FORM ELEMENTS ====== */
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px}
+.form-input{width:100%;background:var(--dark3);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;color:var(--text);font-size:13px;outline:none;transition:border-color .2s;direction:rtl}
+.form-input:focus{border-color:var(--gold)}
+.form-input::placeholder{color:var(--text3)}
+.form-select{width:100%;background:var(--dark3);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;color:var(--text);font-size:13px;outline:none;direction:rtl;appearance:none}
+.form-select option{background:var(--dark3)}
+.form-select:focus{border-color:var(--gold)}
+.form-textarea{width:100%;background:var(--dark3);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;color:var(--text);font-size:13px;outline:none;resize:vertical;min-height:80px;direction:rtl}
+.form-textarea:focus{border-color:var(--gold)}
+.btn-full{width:100%;padding:13px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);border:none;border-radius:10px;font-size:14px;font-weight:700;margin-top:4px}
+.btn-full:active{opacity:.85}
+.result-box{background:var(--dark3);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:14px;display:none}
+.result-box.show{display:block}
+.result-label{font-size:11px;color:var(--text3);margin-bottom:4px}
+.result-value{font-size:22px;font-weight:900;color:var(--gold)}
+.result-note{font-size:11px;color:var(--text2);margin-top:6px;line-height:1.6}
+
+/* ====== PROFILE / DASHBOARD ====== */
+.profile-header{padding:16px;background:var(--dark2);border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:14px}
+.profile-av{width:56px;height:56px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.profile-name{font-size:16px;font-weight:800;color:var(--text)}
+.profile-role{font-size:11px;color:var(--gold);margin-top:2px}
+.profile-meta{font-size:11px;color:var(--text3);margin-top:2px}
+.plan-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:rgba(201,168,76,.1);border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--gold);margin-top:6px}
+
+/* Dashboard cards */
+.dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 14px 0}
+.dash-card{background:var(--dark2);border:1px solid var(--border2);border-radius:14px;padding:16px 14px;cursor:pointer;transition:all .2s}
+.dash-card:active{transform:scale(.96)}
+.dash-card-icon{font-size:22px;margin-bottom:8px}
+.dash-card-num{font-size:22px;font-weight:900;color:var(--gold);line-height:1}
+.dash-card-label{font-size:11px;color:var(--text3);margin-top:3px}
+.dash-card-sub{font-size:10px;color:var(--text2);margin-top:4px}
+
+/* Cases list */
+.cases-list{padding:14px}
+.case-item{background:var(--dark2);border:1px solid var(--border2);border-radius:12px;padding:14px;margin-bottom:10px;cursor:pointer;transition:all .2s}
+.case-item:active{border-color:var(--border)}
+.case-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.case-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.case-title{font-size:13px;font-weight:700;flex:1}
+.case-status{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700}
+.status-pending{background:rgba(234,179,8,.15);color:#eab308;border:1px solid rgba(234,179,8,.3)}
+.status-active{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.3)}
+.status-done{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3)}
+.case-meta{font-size:11px;color:var(--text3)}
+.case-progress{height:3px;background:var(--dark3);border-radius:2px;margin-top:8px;overflow:hidden}
+.case-progress-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;transition:width .5s ease}
+
+/* Plans */
+.plans-grid{display:flex;flex-direction:column;gap:10px;padding:0 16px}
+.plan-card{background:var(--dark2);border:1px solid var(--border2);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .2s}
+.plan-card.featured{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,168,76,.08),var(--dark2))}
+.plan-card:active{transform:scale(.98)}
+.plan-icon{font-size:24px;flex-shrink:0}
+.plan-info{flex:1}
+.plan-name{font-size:14px;font-weight:700;color:var(--text)}
+.plan-features{font-size:11px;color:var(--text2);margin-top:3px;line-height:1.5}
+.plan-price{text-align:left;flex-shrink:0}
+.plan-amount{font-size:16px;font-weight:900;color:var(--gold)}
+.plan-period{font-size:10px;color:var(--text3)}
+
+/* Admin */
+.admin-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:14px}
+.admin-stat{background:var(--dark2);border:1px solid var(--border2);border-radius:12px;padding:14px;text-align:center}
+.admin-stat-num{font-size:24px;font-weight:900;color:var(--gold)}
+.admin-stat-lbl{font-size:10px;color:var(--text3);margin-top:2px}
+.admin-list{padding:0 14px}
+.admin-item{background:var(--dark2);border:1px solid var(--border2);border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.admin-item-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:rgba(201,168,76,.1)}
+.admin-item-info{flex:1}
+.admin-item-name{font-size:13px;font-weight:600}
+.admin-item-meta{font-size:11px;color:var(--text3);margin-top:2px}
+.admin-item-badge{padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700}
+
+/* Scroll row */
+.scroll-row{display:flex;gap:10px;overflow-x:auto;padding:0 16px 4px;scrollbar-width:none}
+.scroll-row::-webkit-scrollbar{display:none}
+.scroll-item{flex-shrink:0}
+
+/* Tab bar */
+.tab-bar{display:flex;gap:0;border-bottom:1px solid var(--border2);margin:0 16px 16px;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-btn{padding:10px 16px;font-size:12px;font-weight:600;color:var(--text3);border:none;background:transparent;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* Section padded */
+.sec-pad{padding:0 16px;margin-bottom:20px}
+.sec-title{font-size:14px;font-weight:700;color:var(--text2);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.sec-title::before{content:'';width:3px;height:16px;background:var(--gold);border-radius:2px}
+
+/* Divider */
+.divider{height:1px;background:var(--border2);margin:8px 16px}
+
+/* Chips */
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{padding:5px 12px;border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--text2);background:transparent}
+.chip.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.08)}
+
+/* Upload area */
+.upload-area{border:2px dashed var(--border);border-radius:14px;padding:28px 20px;text-align:center;cursor:pointer;transition:border-color .2s}
+.upload-area:active{border-color:var(--gold)}
+.upload-icon{font-size:32px;margin-bottom:10px}
+.upload-text{font-size:13px;color:var(--text2)}
+.upload-sub{font-size:11px;color:var(--text3);margin-top:4px}
+
+/* Notification dot */
+.notif-dot{width:8px;height:8px;background:var(--red);border-radius:50%;display:inline-block}
+
+/* Responsive */
+@media(min-width:600px){
+  .services-grid{grid-template-columns:repeat(4,1fr)}
+  .tools-grid{grid-template-columns:repeat(3,1fr)}
+  .dashboard-grid{grid-template-columns:repeat(4,1fr)}
+  .hero-stats{grid-template-columns:repeat(4,1fr)}
+}
+@media(min-width:768px){
+  nav,.bottom-nav,#install-banner,.toast{left:50%;right:auto;width:100%;max-width:520px;transform:translateX(-50%)}
+  .toast{transform:translateX(-50%)}
+  .modal{max-width:520px;margin:0 auto;border-radius:24px}
+  .modal-overlay{align-items:center}
+  .modal-overlay.open .modal{transform:translateY(0)}
+  .page{max-width:520px;margin-left:auto;margin-right:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- INSTALL BANNER -->
+<div id="install-banner">
+  <div class="ib-icon">⚖️</div>
+  <div class="ib-text"><h4>نصب اپ پرواز</h4><p>دسترسی سریع‌تر — بدون App Store</p></div>
+  <div class="ib-btns">
+    <button class="ib-install" id="ib-btn">نصب</button>
+    <button class="ib-close" onclick="dismissInstall()">بعداً</button>
+  </div>
+</div>
+
+<!-- TOP NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">⚖️</div>
+    <div>
+      <div class="nav-logo-text">پرواز</div>
+      <div class="nav-logo-sub">موسسه محمود</div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <button class="nav-admin-btn" onclick="goPage('admin')">🔐 پنل مدیر</button>
+</nav>
+
+<!-- ========== HOME PAGE ========== -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-badge">پلتفرم هوشمند چندخدماتی · موسسه پرواز</div>
+    <h1>همه خدمات شما<br><span>در یک پلتفرم</span></h1>
+    <p>حقوق، بیمه، بورس، ارز دیجیتال و کارپردازی اداری — با هوش مصنوعی و متخصص انسانی</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="goPage('ai')">🤖 مشاوره هوشمند</button>
+      <button class="btn-secondary" onclick="goPage('profile')">👤 ورود / ثبت‌نام</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-box"><div class="stat-num">۵۰۰+</div><div class="stat-lbl">پرونده موفق</div></div>
+      <div class="stat-box"><div class="stat-num">۸</div><div class="stat-lbl">سال تجربه</div></div>
+      <div class="stat-box"><div class="stat-num">۲۴/۷</div><div class="stat-lbl">دستیار AI</div></div>
+      <div class="stat-box"><div class="stat-num">۶۰+</div><div class="stat-lbl">فارغ‌التحصیل</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">خدمات <span>موسسه</span></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" onclick="openService('legal')">
+        <div class="sc-badge hot">داغ</div>
+        <span class="sc-icon">⚖️</span>
+        <div class="sc-name">حقوقی</div>
+        <div class="sc-desc">وکالت، نیابت، مشاوره</div>
+      </div>
+      <div class="service-card" onclick="openService('admin')">
+        <span class="sc-icon">🏛️</span>
+        <div class="sc-name">کارپردازی</div>
+        <div class="sc-desc">امور اداری</div>
+      </div>
+      <div class="service-card" onclick="openService('insurance')">
+        <span class="sc-icon">🛡️</span>
+        <div class="sc-name">بیمه</div>
+        <div class="sc-desc">همه انواع بیمه</div>
+      </div>
+      <div class="service-card" onclick="openService('stocks')">
+        <div class="sc-badge new">جدید</div>
+        <span class="sc-icon">📈</span>
+        <div class="sc-name">بورس</div>
+        <div class="sc-desc">مشاوره سبد</div>
+      </div>
+      <div class="service-card" onclick="openService('crypto')">
+        <span class="sc-icon">🔗</span>
+        <div class="sc-name">رمزارز</div>
+        <div class="sc-desc">سبدگردانی</div>
+      </div>
+      <div class="service-card" onclick="goPage('ai')">
+        <span class="sc-icon">🤖</span>
+        <div class="sc-name">دستیار AI</div>
+        <div class="sc-desc">۲۴/۷ رایگان</div>
+      </div>
+      <div class="service-card" onclick="goPage('charity')">
+        <div class="sc-badge new">خیریه</div>
+        <span class="sc-icon">💚</span>
+        <div class="sc-name">امور خیریه</div>
+        <div class="sc-desc">وکیل داوطلب · نیازمند</div>
+      </div>
+      <div class="service-card" onclick="goPage('careers')">
+        <span class="sc-icon">🤝</span>
+        <div class="sc-name">همکاری</div>
+        <div class="sc-desc">استخدام · تهران</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">ابزارهای <span>محاسباتی</span></div>
+      <span class="see-all" onclick="goPage('tools')">همه →</span>
+    </div>
+    <div class="scroll-row">
+      <button class="btn-secondary scroll-item" onclick="goPage('tools');openTool('mahr')" style="font-size:12px;padding:9px 14px">💍 محاسبه مهریه</button>
+      <button class="btn-secondary scroll-item" onclick="goPage('tools');openTool('insurance-calc')" style="font-size:12px;padding:9px 14px">🛡️ حق بیمه</button>
+      <button class="btn-secondary scroll-item" onclick="goPage('tools');openTool('crypto-calc')" style="font-size:12px;padding:9px 14px">🔗 تبدیل رمزارز</button>
+      <button class="btn-secondary scroll-item" onclick="goPage('tools');openTool('portfolio')" style="font-size:12px;padding:9px 14px">📊 پرتفوی</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">اشتراک‌ها</div>
+      <span class="see-all" onclick="goPage('profile')">مشاهده →</span>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card" onclick="purchasePlan('monthly')">
+        <div class="plan-icon">🥈</div>
+        <div class="plan-info">
+          <div class="plan-name">ماهانه</div>
+          <div class="plan-features">پیام نامحدود · ۵۰ سند · تقویم</div>
+        </div>
+        <div class="plan-price"><div class="plan-amount">۴۹۹ هزار</div><div class="plan-period">تومان/ماه</div></div>
+      </div>
+      <div class="plan-card" onclick="purchasePlan('quarterly')">
+        <div class="plan-icon">🥇</div>
+        <div class="plan-info">
+          <div class="plan-name">سه‌ماهه</div>
+          <div class="plan-features">پیام نامحدود · ۲۰۰ سند · پیامک</div>
+        </div>
+        <div class="plan-price"><div class="plan-amount">۹۹۹ هزار</div><div class="plan-period">تومان/۳ ماه</div></div>
+      </div>
+      <div class="plan-card" onclick="purchasePlan('semiannual')">
+        <div class="plan-icon">💎</div>
+        <div class="plan-info">
+          <div class="plan-name">شش‌ماهه</div>
+          <div class="plan-features">همه امکانات · اولویت پاسخ</div>
+        </div>
+        <div class="plan-price"><div class="plan-amount">۱,۶۹۸,۰۰۰</div><div class="plan-period">تومان/۶ ماه</div></div>
+      </div>
+      <div class="plan-card featured" onclick="purchasePlan('yearly')">
+        <div class="plan-icon">🏆</div>
+        <div class="plan-info">
+          <div class="plan-name">سالانه ⭐</div>
+          <div class="plan-features">همه امکانات + ۱ مشاوره رایگان</div>
+        </div>
+        <div class="plan-price"><div class="plan-amount">۳,۳۹۶,۰۰۰</div><div class="plan-period">تومان/سال</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:20px"></div>
+</div>
+
+<!-- ========== AI PAGE ========== -->
+<div class="page" id="page-ai" style="padding:0;height:calc(100vh - 62px);display:none;flex-direction:column">
+  <div class="chat-header">
+    <div class="chat-av">🤖</div>
+    <div class="chat-info">
+      <h3>دستیار هوشمند پرواز</h3>
+      <p>حقوق · بیمه · بورس · رمزارز · اداری</p>
+    </div>
+    <div class="chat-quota-wrap">
+      <div class="chat-online">آنلاین</div>
+      <div class="chat-quota" id="chat-quota-text">۷ پیام رایگان</div>
+      <div class="chat-quota-bar"><div class="chat-quota-fill" id="chat-quota-fill" style="width:0%"></div></div>
+    </div>
+    <button class="chat-clear-btn" onclick="clearChat()">پاک</button>
+  </div>
+  <div class="quota-warn" id="quota-warn">
+    <span id="quota-warn-text"></span>
+    <button id="quota-warn-btn" type="button"></button>
+  </div>
+  <div class="chat-messages" id="chat-messages"></div>
+  <div class="chat-topics" id="chat-topics">
+    <button class="topic-btn" onclick="quickMsg('مشاوره حقوقی می‌خوام')">⚖️ حقوقی</button>
+    <button class="topic-btn" onclick="quickMsg('درباره بیمه عمر بگو')">🛡️ بیمه</button>
+    <button class="topic-btn" onclick="quickMsg('تحلیل بورس امروز')">📈 بورس</button>
+    <button class="topic-btn" onclick="quickMsg('آینده بیت‌کوین چیست؟')">🔗 رمزارز</button>
+    <button class="topic-btn" onclick="quickMsg('کار اداری دارم')">🏛️ اداری</button>
+  </div>
+  <div class="chat-input-area">
+    <textarea id="chat-input" placeholder="سوال خود را بنویسید..." rows="1"></textarea>
+    <button id="chat-send" onclick="sendChat()">➤</button>
+  </div>
+</div>
+
+<!-- ========== TOOLS PAGE ========== -->
+<div class="page" id="page-tools">
+  <div class="section-header" style="padding:0 16px;margin-bottom:14px">
+    <div class="section-title" style="font-size:17px">ابزارهای <span>محاسباتی</span></div>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(this,'حقوقی')">⚖️ حقوقی</button>
+    <button class="tab-btn" onclick="switchTab(this,'بیمه')">🛡️ بیمه</button>
+    <button class="tab-btn" onclick="switchTab(this,'بورس')">📈 بورس</button>
+    <button class="tab-btn" onclick="switchTab(this,'رمزارز')">🔗 رمزارز</button>
+  </div>
+
+  <!-- Legal Tools -->
+  <div id="tab-حقوقی">
+    <div class="tools-grid">
+      <div class="tool-card" onclick="openTool('mahr')"><div class="tool-icon">💍</div><div class="tool-name">محاسبه مهریه</div><div class="tool-desc">به‌روزرسانی با شاخص بانک مرکزی</div></div>
+      <div class="tool-card" onclick="openTool('delay')"><div class="tool-icon">⏳</div><div class="tool-name">تأخیر تأدیه</div><div class="tool-desc">ماده ۵۲۲ + نرخ تورم</div></div>
+      <div class="tool-card" onclick="openTool('court')"><div class="tool-icon">🏛️</div><div class="tool-name">هزینه دادرسی</div><div class="tool-desc">تعرفه قوه قضاییه</div></div>
+      <div class="tool-card" onclick="openTool('lawyer')"><div class="tool-icon">👨‍⚖️</div><div class="tool-name">حق‌الوکاله</div><div class="tool-desc">دولتی + توافقی</div></div>
+    </div>
+  </div>
+
+  <!-- Insurance Tools -->
+  <div id="tab-بیمه" style="display:none">
+    <div class="tools-grid">
+      <div class="tool-card" onclick="openTool('insurance-calc')"><div class="tool-icon">🚗</div><div class="tool-name">بیمه شخص ثالث</div><div class="tool-desc">بر اساس نوع و سال خودرو</div></div>
+      <div class="tool-card" onclick="openTool('life-ins')"><div class="tool-icon">❤️</div><div class="tool-name">بیمه عمر</div><div class="tool-desc">بر اساس سن و مدت</div></div>
+      <div class="tool-card" onclick="openTool('compare-ins')"><div class="tool-icon">📊</div><div class="tool-name">مقایسه بیمه‌ها</div><div class="tool-desc">جدول مقایسه شرکت‌ها</div></div>
+    </div>
+  </div>
+
+  <!-- Stocks Tools -->
+  <div id="tab-بورس" style="display:none">
+    <div class="tools-grid">
+      <div class="tool-card" onclick="openTool('portfolio')"><div class="tool-icon">📈</div><div class="tool-name">سود/زیان پرتفوی</div><div class="tool-desc">قیمت خرید، تعداد، قیمت روز</div></div>
+      <div class="tool-card" onclick="openTool('compound')"><div class="tool-icon">💹</div><div class="tool-name">سود مرکب</div><div class="tool-desc">ماشین‌حساب رشد سرمایه</div></div>
+      <div class="tool-card" onclick="openTool('tax-stock')"><div class="tool-icon">📋</div><div class="tool-name">مالیات سهام</div><div class="tool-desc">نقل و انتقال سهام</div></div>
+    </div>
+  </div>
+
+  <!-- Crypto Tools -->
+  <div id="tab-رمزارز" style="display:none">
+    <div class="tools-grid">
+      <div class="tool-card" onclick="openTool('crypto-calc')"><div class="tool-icon">💱</div><div class="tool-name">تبدیل رمزارز</div><div class="tool-desc">قیمت لحظه‌ای به ریال/دلار</div></div>
+      <div class="tool-card" onclick="openTool('crypto-pnl')"><div class="tool-icon">📊</div><div class="tool-name">سود/زیان معاملات</div><div class="tool-desc">محاسبه دقیق P&amp;L</div></div>
+      <div class="tool-card" onclick="openTool('dca')"><div class="tool-icon">🔄</div><div class="tool-name">DCA Calculator</div><div class="tool-desc">میانگین قیمت خرید</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PROFILE PAGE ========== -->
+<div class="page" id="page-profile">
+  <div class="profile-header">
+    <div class="profile-av">👤</div>
+    <div>
+      <div class="profile-name">کاربر مهمان</div>
+      <div class="profile-role">موسسه محمود · کارپردازی حقوقی</div>
+      <div class="plan-badge" id="profile-plan-badge">🆓 نسخه رایگان · ۷ پیام اول</div>
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="dash-card" onclick="openModal('modal-cases')">
+      <div class="dash-card-icon">📁</div>
+      <div class="dash-card-num">۳</div>
+      <div class="dash-card-label">پرونده فعال</div>
+      <div class="dash-card-sub">۱ در انتظار</div>
+    </div>
+    <div class="dash-card" onclick="openModal('modal-docs')">
+      <div class="dash-card-icon">📄</div>
+      <div class="dash-card-num">۷</div>
+      <div class="dash-card-label">سند آپلود</div>
+      <div class="dash-card-sub">۳ سند باقی‌مانده</div>
+    </div>
+    <div class="dash-card" onclick="goPage('ai')">
+      <div class="dash-card-icon">💬</div>
+      <div class="dash-card-num" id="dash-msg-count">۰</div>
+      <div class="dash-card-label">مکالمه AI</div>
+      <div class="dash-card-sub" id="dash-msg-sub">۷ پیام رایگان</div>
+    </div>
+    <div class="dash-card" onclick="openModal('modal-plans')">
+      <div class="dash-card-icon">⭐</div>
+      <div class="dash-card-num">↑</div>
+      <div class="dash-card-label">ارتقا پلن</div>
+      <div class="dash-card-sub">از ۴۹۹ هزار/ماه</div>
+    </div>
+    <div class="dash-card" onclick="goPage('charity')">
+      <div class="dash-card-icon">💚</div>
+      <div class="dash-card-num">خیریه</div>
+      <div class="dash-card-label">امور خیریه</div>
+      <div class="dash-card-sub">وکیل · نیازمند</div>
+    </div>
+    <div class="dash-card" onclick="goPage('careers')">
+      <div class="dash-card-icon">🤝</div>
+      <div class="dash-card-num">HR</div>
+      <div class="dash-card-label">همکاری</div>
+      <div class="dash-card-sub">تهران · مصاحبه AI</div>
+    </div>
+  </div>
+
+  <div class="section" style="margin-top:14px">
+    <div class="section-header">
+      <div class="section-title">معرفی <span>دوستان</span></div>
+    </div>
+    <div class="referral-box">
+      <div style="font-size:12px;color:var(--text2);line-height:1.7">کد معرف خود را به اشتراک بگذارید. با معرفی موفق، اشتراک رایگان دریافت کنید.</div>
+      <div class="referral-code">
+        <input id="referral-code-input" readonly>
+        <button class="btn-primary" style="padding:9px 14px;font-size:12px" onclick="copyReferralCode()">کپی</button>
+      </div>
+      <div id="referral-tiers"></div>
+      <button class="btn-full" style="margin-top:10px;background:transparent;border:1px solid var(--border);color:var(--gold)" onclick="shareReferral()">📤 اشتراک‌گذاری لینک معرف</button>
+    </div>
+  </div>
+
+  <div style="padding:14px 14px 0">
+    <div class="sec-title">پرونده‌های من</div>
+    <div id="cases-preview"></div>
+  </div>
+
+  <div class="sec-pad" style="margin-top:14px">
+    <div class="sec-title">آپلود سند</div>
+    <div class="upload-area" onclick="showToast('در نسخه دمو: قابلیت آپلود فعال است')">
+      <div class="upload-icon">📎</div>
+      <div class="upload-text">فایل خود را اینجا بکشید یا ضربه بزنید</div>
+      <div class="upload-sub">PDF, JPG, PNG — حداکثر ۱۰ مگابایت · ۳ سند باقی‌مانده</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">پرداخت <span>و حمایت</span></div>
+    </div>
+    <div style="padding:0 16px">
+      <div class="pay-box">
+        <div class="pay-box-title">💳 خرید اشتراک · حمایت از توسعه‌دهندگان</div>
+        <div class="pay-card-num" id="pay-card-num">6219-8619-2628-4190</div>
+        <div class="pay-card-name">به نام: سید محمود میرکمالی</div>
+        <button class="pay-copy-btn" onclick="copyPaymentCard()">کپی شماره کارت</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:20px"></div>
+</div>
+
+<!-- ========== CHARITY PAGE ========== -->
+<div class="page" id="page-charity">
+  <div class="profile-header" style="background:linear-gradient(135deg,rgba(34,197,94,.1),var(--dark2))">
+    <div class="profile-av" style="font-size:24px">💚</div>
+    <div>
+      <div class="profile-name">سامانه امور خیریه حقوقی</div>
+      <div class="profile-role" style="color:var(--green)">تطبیق هوشمند · وکیل داوطلب ↔ نیازمند</div>
+      <div class="plan-badge" style="color:var(--green);border-color:rgba(34,197,94,.3)">احراز هویت اجباری برای وکلا</div>
+    </div>
+  </div>
+
+  <div class="pipeline" id="charity-pipeline">
+    <div class="pipe-step active" data-step="1"><div class="pipe-dot">۱</div><div class="pipe-lbl">ثبت</div></div>
+    <div class="pipe-step" data-step="2"><div class="pipe-dot">۲</div><div class="pipe-lbl">تحلیل AI</div></div>
+    <div class="pipe-step" data-step="3"><div class="pipe-dot">۳</div><div class="pipe-lbl">انتشار</div></div>
+    <div class="pipe-step" data-step="4"><div class="pipe-dot">۴</div><div class="pipe-lbl">تطبیق</div></div>
+    <div class="pipe-step" data-step="5"><div class="pipe-dot">۵</div><div class="pipe-lbl">پیگیری</div></div>
+  </div>
+
+  <div class="ai-agent-box">
+    <div class="ai-agent-hdr">🤖 <span>ایجنت برنامه‌ریزی خیریه</span> <span class="verified-badge">فعال</span></div>
+    <div class="ai-agent-out" id="charity-ai-out">آماده تحلیل پرونده‌ها، اولویت‌بندی و تطبیق وکیل احراز‌شده با متقاضیان.</div>
+    <button class="btn-full" style="margin-top:8px;font-size:12px;padding:10px" onclick="runCharityAI()">تحلیل و اولویت‌بندی پرونده‌ها</button>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="charityTab(this,'need')">🙋 نیازمند وکیل</button>
+    <button class="tab-btn" onclick="charityTab(this,'lawyer')">⚖️ وکیل داوطلب</button>
+    <button class="tab-btn" onclick="charityTab(this,'board')">📋 بازار پرونده</button>
+  </div>
+
+  <div id="charity-need">
+    <div class="sec-pad">
+      <div class="sec-title">ثبت درخواست کمک حقوقی</div>
+      <div class="form-group"><label class="form-label">موضوع پرونده *</label><input class="form-input" id="cn-subject" placeholder="مثلاً: مهریه معوق، حضانت فرزند"></div>
+      <div class="form-group"><label class="form-label">شرح وضعیت *</label><textarea class="form-textarea" id="cn-desc" placeholder="وضعیت مالی، مدارک موجود، فوریت..."></textarea></div>
+      <div class="form-group"><label class="form-label">استان</label><select class="form-select" id="cn-province"><option>تهران</option><option>البرز</option><option>اصفهان</option><option>خراسان رضوی</option><option>فارس</option><option>سایر</option></select></div>
+      <div class="form-group"><label class="form-label">شماره تماس</label><input class="form-input" id="cn-phone" type="tel" placeholder="۰۹۱۲..."></div>
+      <button class="btn-full" onclick="submitCharityNeed()">ثبت و ارسال به ایجنت AI</button>
+    </div>
+  </div>
+
+  <div id="charity-lawyer" style="display:none">
+    <div class="sec-pad">
+      <div class="sec-title">ثبت‌نام وکیل / کارشناس داوطلب</div>
+      <p style="font-size:11px;color:var(--text3);margin-bottom:12px;line-height:1.6">پس از احراز هویت (پروانه وکالت یا کارت کارشناسی) می‌توانید پرونده‌های خیریه را بپذیرید.</p>
+      <div class="form-group"><label class="form-label">نام و نام خانوادگی *</label><input class="form-input" id="cl-name" placeholder="نام کامل"></div>
+      <div class="form-group"><label class="form-label">شماره پروانه / کارت کارشناسی *</label><input class="form-input" id="cl-license" placeholder="شماره پروانه وکالت"></div>
+      <div class="form-group"><label class="form-label">تخصص</label><select class="form-select" id="cl-spec"><option>حقوق خانواده</option><option>حقوق کیفری</option><option>حقوق ملکی</option><option>حقوق کار</option><option>کارشناسی رسمی</option></select></div>
+      <div class="form-group"><label class="form-label">ظرفیت ماهانه (پرونده)</label><select class="form-select" id="cl-cap"><option value="1">۱ پرونده</option><option value="2">۲ پرونده</option><option value="3" selected>۳ پرونده</option><option value="5">۵ پرونده</option></select></div>
+      <div class="form-group"><label class="form-label">شماره تماس</label><input class="form-input" id="cl-phone" type="tel"></div>
+      <button class="btn-full" onclick="submitCharityLawyer()">ثبت‌نام و درخواست احراز هویت</button>
+    </div>
+  </div>
+
+  <div id="charity-board" style="display:none">
+    <div id="charity-cases-list"></div>
+    <p style="text-align:center;font-size:11px;color:var(--text3);padding:16px" id="charity-empty">هنوز پرونده‌ای ثبت نشده. اولین درخواست را ثبت کنید.</p>
+  </div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ========== CAREERS PAGE ========== -->
+<div class="page" id="page-careers">
+  <div class="profile-header" style="background:linear-gradient(135deg,rgba(59,130,246,.1),var(--dark2))">
+    <div class="profile-av" style="font-size:24px">🤝</div>
+    <div>
+      <div class="profile-name">پیشنهاد همکاری</div>
+      <div class="profile-role" style="color:var(--blue)">بررسی توسط کارمند AI منابع انسانی</div>
+      <div class="plan-badge" style="color:var(--blue);border-color:rgba(59,130,246,.3)">اولویت: تهران و حومه</div>
+    </div>
+  </div>
+
+  <div class="career-steps" id="career-steps">
+    <div class="career-step active"></div><div class="career-step"></div><div class="career-step"></div><div class="career-step"></div>
+  </div>
+
+  <div id="career-step-1" class="sec-pad">
+    <div class="sec-title">مرحله ۱ — اطلاعات اولیه</div>
+    <div class="form-group"><label class="form-label">نام و نام خانوادگی *</label><input class="form-input" id="cr-name"></div>
+    <div class="form-group"><label class="form-label">شهر *</label><select class="form-select" id="cr-city"><option selected>تهران</option><option>کرج</option><option>شهریار</option><option>ری</option><option>سایر شهرها</option></select></div>
+    <div class="form-group"><label class="form-label">حوزه همکاری *</label><select class="form-select" id="cr-role"><option>وکیل / مشاور حقوقی</option><option>کارپرداز اداری</option><option>کارشناس بیمه</option><option>تحلیلگر مالی / بورس</option><option>توسعه‌دهنده نرم‌افزار</option><option>پشتیبانی و فروش</option></select></div>
+    <div class="form-group"><label class="form-label">سابقه (سال)</label><input class="form-input" id="cr-exp" type="number" placeholder="۳"></div>
+    <div class="form-group"><label class="form-label">شماره تماس *</label><input class="form-input" id="cr-phone" type="tel"></div>
+    <button class="btn-full" onclick="careerNext(2)">ادامه →</button>
+  </div>
+
+  <div id="career-step-2" class="sec-pad" style="display:none">
+    <div class="sec-title">مرحله ۲ — پیشنهاد همکاری</div>
+    <div class="form-group"><label class="form-label">چرا می‌خواهید همکاری کنید؟ *</label><textarea class="form-textarea" id="cr-motivation" placeholder="انگیزه، مهارت‌ها، زمان در دسترس..."></textarea></div>
+    <div class="form-group"><label class="form-label">حقوق پیشنهادی (تومان)</label><input class="form-input" id="cr-salary" placeholder="توافقی"></div>
+    <div class="form-group"><label class="form-label">نوع همکاری</label><select class="form-select" id="cr-type"><option>تمام‌وقت</option><option>پاره‌وقت</option><option>پروژه‌ای / دورکاری</option><option>داوطلبانه</option></select></div>
+    <button class="btn-full" onclick="careerNext(3)">شروع مصاحبه AI منابع انسانی →</button>
+  </div>
+
+  <div id="career-step-3" class="sec-pad" style="display:none">
+    <div class="sec-title">مرحله ۳ — مصاحبه با AI منابع انسانی</div>
+    <div class="ai-agent-box" style="margin:0">
+      <div class="ai-agent-hdr">👔 <span>سارا — کارشناس HR هوشمند</span></div>
+      <div class="hr-chat" id="hr-chat"></div>
+      <div style="display:flex;gap:8px">
+        <input class="form-input" id="hr-input" placeholder="پاسخ خود را بنویسید..." style="flex:1">
+        <button class="btn-primary" style="padding:10px 14px;font-size:12px" onclick="sendHRMsg()">ارسال</button>
+      </div>
+    </div>
+    <button class="btn-full" style="margin-top:12px" onclick="careerNext(4)">رفتن به آزمون مهارت →</button>
+  </div>
+
+  <div id="career-step-4" class="sec-pad" style="display:none">
+    <div class="sec-title">مرحله ۴ — آزمون مهارت</div>
+    <div id="cr-test-area"></div>
+    <button class="btn-full" onclick="submitCareer()">ارسال نهایی پیشنهاد همکاری</button>
+  </div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ========== ADMIN PAGE ========== -->
+<div class="page" id="page-admin">
+  <div class="profile-header" style="background:linear-gradient(135deg,rgba(201,168,76,.12),var(--dark2))">
+    <div class="profile-av" style="font-size:22px">👑</div>
+    <div>
+      <div class="profile-name">سیدمحمود میرکمالی</div>
+      <div class="profile-role" style="color:#4ade80">مدیر کل | دسترسی کامل</div>
+      <div class="profile-meta">سیدمحمود میرکمالی · مدیر موسسه</div>
+    </div>
+  </div>
+
+  <div class="admin-stats">
+    <div class="admin-stat"><div class="admin-stat-num">۴۸</div><div class="admin-stat-lbl">کاربر ثبت‌نام</div></div>
+    <div class="admin-stat"><div class="admin-stat-num">۱۲</div><div class="admin-stat-lbl">درخواست فعال</div></div>
+    <div class="admin-stat"><div class="admin-stat-num">۸.۴م</div><div class="admin-stat-lbl">درآمد ماه</div></div>
+    <div class="admin-stat"><div class="admin-stat-num">۹۴٪</div><div class="admin-stat-lbl">رضایت</div></div>
+  </div>
+
+  <div class="tab-bar" style="margin-top:4px">
+    <button class="tab-btn active" onclick="adminTab(this,'req')">درخواست‌ها</button>
+    <button class="tab-btn" onclick="adminTab(this,'users')">کاربران</button>
+    <button class="tab-btn" onclick="adminTab(this,'ai-stats')">آمار AI</button>
+    <button class="tab-btn" onclick="adminTab(this,'settings')">تنظیمات</button>
+  </div>
+
+  <div id="admin-req" class="admin-list">
+    <div class="admin-item" onclick="showToast('جزئیات پرونده حقوقی باز شد')">
+      <div class="admin-item-icon">⚖️</div>
+      <div class="admin-item-info">
+        <div class="admin-item-name">پرونده طلاق — احمد رضایی</div>
+        <div class="admin-item-meta">ثبت: ۱۴۰۳/۰۹/۱۵ · حقوقی</div>
+      </div>
+      <span class="admin-item-badge status-active">در حال بررسی</span>
+    </div>
+    <div class="admin-item" onclick="showToast('درخواست بیمه باز شد')">
+      <div class="admin-item-icon">🛡️</div>
+      <div class="admin-item-info">
+        <div class="admin-item-name">بیمه عمر — فاطمه محمدی</div>
+        <div class="admin-item-meta">ثبت: ۱۴۰۳/۰۹/۱۸ · بیمه</div>
+      </div>
+      <span class="admin-item-badge status-pending">در انتظار</span>
+    </div>
+    <div class="admin-item" onclick="showToast('کارپردازی باز شد')">
+      <div class="admin-item-icon">🏛️</div>
+      <div class="admin-item-info">
+        <div class="admin-item-name">ثبت شرکت — علی کریمی</div>
+        <div class="admin-item-meta">ثبت: ۱۴۰۳/۰۹/۲۰ · کارپردازی</div>
+      </div>
+      <span class="admin-item-badge status-done">تکمیل</span>
+    </div>
+    <div class="admin-item" onclick="showToast('مشاوره رمزارز باز شد')">
+      <div class="admin-item-icon">🔗</div>
+      <div class="admin-item-info">
+        <div class="admin-item-name">مشاوره سبد — سارا حسینی</div>
+        <div class="admin-item-meta">ثبت: ۱۴۰۳/۰۹/۲۱ · رمزارز</div>
+      </div>
+      <span class="admin-item-badge status-pending">در انتظار</span>
+    </div>
+    <div class="admin-item" onclick="showToast('مشاوره بورس باز شد')">
+      <div class="admin-item-icon">📈</div>
+      <div class="admin-item-info">
+        <div class="admin-item-name">مشاوره بورس — رضا اکبری</div>
+        <div class="admin-item-meta">ثبت: ۱۴۰۳/۰۹/۲۲ · بورس</div>
+      </div>
+      <span class="admin-item-badge status-active">در حال انجام</span>
+    </div>
+  </div>
+
+  <div id="admin-users" style="display:none" class="admin-list">
+    <div class="admin-item"><div class="admin-item-icon">👤</div><div class="admin-item-info"><div class="admin-item-name">احمد رضایی</div><div class="admin-item-meta">۰۹۱۲xxx · ۳ پرونده</div></div><span class="admin-item-badge status-active">فعال</span></div>
+    <div class="admin-item"><div class="admin-item-icon">👤</div><div class="admin-item-info"><div class="admin-item-name">فاطمه محمدی</div><div class="admin-item-meta">۰۹۳۵xxx · ۱ پرونده</div></div><span class="admin-item-badge status-pending">رایگان</span></div>
+    <div class="admin-item"><div class="admin-item-icon">👤</div><div class="admin-item-info"><div class="admin-item-name">علی کریمی</div><div class="admin-item-meta">۰۹۱۸xxx · ۲ پرونده</div></div><span class="admin-item-badge status-done">سالانه</span></div>
+  </div>
+
+  <div id="admin-ai-stats" style="display:none;padding:0 14px">
+    <div style="background:var(--dark2);border:1px solid var(--border2);border-radius:14px;padding:16px;margin-bottom:10px">
+      <div class="sec-title">موضوعات پرتکرار این هفته</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;color:var(--text2);width:80px">مهریه</span><div style="flex:1;height:8px;background:var(--dark3);border-radius:4px;overflow:hidden"><div style="width:75%;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:4px"></div></div><span style="font-size:11px;color:var(--gold)">۷۵٪</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;color:var(--text2);width:80px">طلاق</span><div style="flex:1;height:8px;background:var(--dark3);border-radius:4px;overflow:hidden"><div style="width:55%;height:100%;background:linear-gradient(90deg,var(--blue),#60a5fa);border-radius:4px"></div></div><span style="font-size:11px;color:var(--blue)">۵۵٪</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;color:var(--text2);width:80px">بیت‌کوین</span><div style="flex:1;height:8px;background:var(--dark3);border-radius:4px;overflow:hidden"><div style="width:40%;height:100%;background:linear-gradient(90deg,var(--purple),#c084fc);border-radius:4px"></div></div><span style="font-size:11px;color:var(--purple)">۴۰٪</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;color:var(--text2);width:80px">بیمه عمر</span><div style="flex:1;height:8px;background:var(--dark3);border-radius:4px;overflow:hidden"><div style="width:30%;height:100%;background:linear-gradient(90deg,var(--green),#4ade80);border-radius:4px"></div></div><span style="font-size:11px;color:var(--green)">۳۰٪</span></div>
+      </div>
+    </div>
+    <div style="background:var(--dark2);border:1px solid var(--border2);border-radius:14px;padding:16px">
+      <div class="sec-title">آمار مکالمات</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px">
+        <div style="text-align:center"><div style="font-size:22px;font-weight:900;color:var(--gold)">۲۸۴</div><div style="font-size:10px;color:var(--text3)">این هفته</div></div>
+        <div style="text-align:center"><div style="font-size:22px;font-weight:900;color:var(--blue)">۱.۲k</div><div style="font-size:10px;color:var(--text3)">این ماه</div></div>
+        <div style="text-align:center"><div style="font-size:22px;font-weight:900;color:var(--green)">۸.۷k</div><div style="font-size:10px;color:var(--text3)">کل</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-settings" style="display:none;padding:0 14px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="admin-item" onclick="showToast('تنظیم قیمت اشتراک‌ها')"><div class="admin-item-icon">💰</div><div class="admin-item-info"><div class="admin-item-name">قیمت اشتراک‌ها</div><div class="admin-item-meta">مدیریت پلن‌ها و تخفیف‌ها</div></div><span>›</span></div>
+      <div class="admin-item" onclick="showToast('اعلان دسته‌جمعی ارسال شد')"><div class="admin-item-icon">📢</div><div class="admin-item-info"><div class="admin-item-name">اعلان دسته‌جمعی</div><div class="admin-item-meta">ارسال پیام به همه کاربران</div></div><span>›</span></div>
+      <div class="admin-item" onclick="showToast('گزارش مالی ماه جاری')"><div class="admin-item-icon">📊</div><div class="admin-item-info"><div class="admin-item-name">گزارش مالی</div><div class="admin-item-meta">درآمد، اشتراک‌ها، پرداخت‌ها</div></div><span>›</span></div>
+      <div class="admin-item" onclick="showToast('مدیریت کارمندان کارپردازی')"><div class="admin-item-icon">👥</div><div class="admin-item-info"><div class="admin-item-name">کارمندان کارپردازی</div><div class="admin-item-meta">تخصیص کار، پیگیری</div></div><span>›</span></div>
+    </div>
+  </div>
+
+  <div style="height:20px"></div>
+</div>
+
+<!-- ====== MODALS ====== -->
+
+<!-- Cases Modal -->
+<div class="modal-overlay" id="modal-cases">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">📁 پرونده‌های من <button class="modal-close" onclick="closeModal('modal-cases')">✕</button></div>
+    <div id="modal-cases-content"></div>
+  </div>
+</div>
+
+<!-- Docs Modal -->
+<div class="modal-overlay" id="modal-docs">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">📄 اسناد من <button class="modal-close" onclick="closeModal('modal-docs')">✕</button></div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:10px;padding:12px;background:var(--dark3);border-radius:10px"><span>📋</span><div style="flex:1"><div style="font-size:13px;font-weight:600">وکالت‌نامه.pdf</div><div style="font-size:10px;color:var(--text3)">حقوقی · ۲.۳MB · ۱۴۰۳/۰۹/۱۲</div></div><span style="font-size:11px;color:var(--gold)">مشاهده</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:12px;background:var(--dark3);border-radius:10px"><span>🛡️</span><div style="flex:1"><div style="font-size:13px;font-weight:600">بیمه‌نامه عمر.jpg</div><div style="font-size:10px;color:var(--text3)">بیمه · ۱.۱MB · ۱۴۰۳/۰۸/۰۵</div></div><span style="font-size:11px;color:var(--gold)">مشاهده</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:12px;background:var(--dark3);border-radius:10px"><span>📈</span><div style="flex:1"><div style="font-size:13px;font-weight:600">گزارش پرتفوی.pdf</div><div style="font-size:10px;color:var(--text3)">بورس · ۰.۸MB · ۱۴۰۳/۰۹/۰۱</div></div><span style="font-size:11px;color:var(--gold)">مشاهده</span></div>
+    </div>
+    <div class="upload-area" style="margin-top:14px" onclick="showToast('آپلود سند جدید')">
+      <div class="upload-icon">📎</div>
+      <div class="upload-text">افزودن سند جدید</div>
+      <div class="upload-sub">۳ سند از ۱۰ باقی‌مانده (رایگان)</div>
+    </div>
+  </div>
+</div>
+
+<!-- Plans Modal -->
+<div class="modal-overlay" id="modal-plans">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">⭐ ارتقا پلن <button class="modal-close" onclick="closeModal('modal-plans')">✕</button></div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="plan-card" onclick="purchasePlan('monthly')"><div class="plan-icon">🥈</div><div class="plan-info"><div class="plan-name">ماهانه</div><div class="plan-features">پیام نامحدود · ۵۰ سند · تقویم</div></div><div class="plan-price"><div class="plan-amount">۴۹۹k</div><div class="plan-period">/ماه</div></div></div>
+      <div class="plan-card" onclick="purchasePlan('quarterly')"><div class="plan-icon">🥇</div><div class="plan-info"><div class="plan-name">سه‌ماهه</div><div class="plan-features">پیام نامحدود · ۲۰۰ سند · پیامک</div></div><div class="plan-price"><div class="plan-amount">۹۹۹k</div><div class="plan-period">/۳ ماه</div></div></div>
+      <div class="plan-card" onclick="purchasePlan('semiannual')"><div class="plan-icon">💎</div><div class="plan-info"><div class="plan-name">شش‌ماهه</div><div class="plan-features">همه امکانات · اولویت پاسخ</div></div><div class="plan-price"><div class="plan-amount">۱,۶۹۸k</div><div class="plan-period">/۶ ماه</div></div></div>
+      <div class="plan-card featured" onclick="purchasePlan('yearly')"><div class="plan-icon">🏆</div><div class="plan-info"><div class="plan-name">سالانه ⭐ پیشنهادی</div><div class="plan-features">همه امکانات + ۱ مشاوره رایگان</div></div><div class="plan-price"><div class="plan-amount">۳,۳۹۶k</div><div class="plan-period">/سال</div></div></div>
+      <div class="plan-card" onclick="showToast('مادام‌العمر با معرفی ۱۲ نفر خریدار اشتراک — توکن محدود')"><div class="plan-icon">♾️</div><div class="plan-info"><div class="plan-name">مادام‌العمر</div><div class="plan-features">با ۱۲ معرفی خریدار · ۱۰۰ پیام/ماه</div></div><div class="plan-price"><div class="plan-amount">معرفی</div><div class="plan-period">۱۲ نفر</div></div></div>
+    </div>
+    <div class="pay-box" style="margin-top:12px">
+      <div class="pay-box-title">💳 پرداخت کارت به کارت</div>
+      <div class="pay-card-num">6219-8619-2628-4190</div>
+      <div class="pay-card-name">سید محمود میرکمالی — حمایت از توسعه‌دهندگان</div>
+      <button class="pay-copy-btn" onclick="copyPaymentCard()">کپی شماره کارت</button>
+    </div>
+    <p style="font-size:11px;color:var(--text3);text-align:center;margin-top:10px;line-height:1.7">🆓 ۷ پیام رایگان → ثبت نظر +۱۰ سوال → معرفی دوستان = اشتراک رایگان</p>
+    <p style="font-size:11px;color:var(--text3);text-align:center;margin-top:8px">پس از واریز، رسید را در پروفایل ارسال کنید</p>
+  </div>
+</div>
+
+<!-- Review Modal -->
+<div class="modal-overlay" id="modal-review">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">⭐ ثبت نظر در وبسایت <button class="modal-close" onclick="closeModal('modal-review')">✕</button></div>
+    <p style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:14px">با ثبت نظر در پلتفرم، ۱۰ سوال دیگر به دستیار هوشمند دسترسی پیدا می‌کنید.</p>
+    <div class="form-group"><label class="form-label">امتیاز شما</label>
+      <select class="form-select" id="review-rating"><option value="5">⭐⭐⭐⭐⭐ عالی</option><option value="4">⭐⭐⭐⭐ خوب</option><option value="3">⭐⭐⭐ متوسط</option></select>
+    </div>
+    <div class="form-group"><label class="form-label">نظر شما</label>
+      <textarea class="form-textarea" id="review-text" placeholder="تجربه خود از موسسه پرواز را بنویسید..."></textarea>
+    </div>
+    <button class="btn-full" onclick="submitReview()">ثبت نظر و باز کردن ۱۰ سوال</button>
+  </div>
+</div>
+
+<!-- Tool Modals -->
+<div class="modal-overlay" id="modal-tool">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="tool-modal-title">ابزار <button class="modal-close" onclick="closeModal('modal-tool')">✕</button></div>
+    <div id="tool-modal-content"></div>
+  </div>
+</div>
+
+<!-- Service Modal -->
+<div class="modal-overlay" id="modal-service">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="service-modal-title">خدمت <button class="modal-close" onclick="closeModal('modal-service')">✕</button></div>
+    <div id="service-modal-content"></div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="bn-item active" id="bn-home" onclick="goPage('home')">
+    <div class="bn-icon-wrap"><span class="bn-icon">🏠</span></div>
+    <span class="bn-label">خانه</span>
+  </button>
+  <button class="bn-item" id="bn-ai" onclick="goPage('ai')">
+    <div class="bn-icon-wrap"><span class="bn-icon">🤖</span><span class="bn-badge">۳</span></div>
+    <span class="bn-label">دستیار</span>
+  </button>
+  <button class="bn-item" id="bn-tools" onclick="goPage('tools')">
+    <div class="bn-icon-wrap"><span class="bn-icon">🧮</span></div>
+    <span class="bn-label">ابزارها</span>
+  </button>
+  <button class="bn-item" id="bn-profile" onclick="goPage('profile')">
+    <div class="bn-icon-wrap"><span class="bn-icon">👤</span></div>
+    <span class="bn-label">پروفایل</span>
+  </button>
+  <button class="bn-item" id="bn-charity" onclick="goPage('charity')">
+    <div class="bn-icon-wrap"><span class="bn-icon">💚</span></div>
+    <span class="bn-label">خیریه</span>
+  </button>
+</div>
+
+<script>
+// ====== DB ======
+let db;
+async function openDB(){
+  return new Promise((res,rej)=>{
+    const r=indexedDB.open('parvaaz-v2',2);
+    r.onupgradeneeded=e=>{
+      const d=e.target.result;
+      if(!d.objectStoreNames.contains('chats'))d.createObjectStore('chats',{keyPath:'id',autoIncrement:true});
+      if(!d.objectStoreNames.contains('forms'))d.createObjectStore('forms',{keyPath:'id',autoIncrement:true});
+      if(!d.objectStoreNames.contains('charity'))d.createObjectStore('charity',{keyPath:'id',autoIncrement:true});
+      if(!d.objectStoreNames.contains('careers'))d.createObjectStore('careers',{keyPath:'id',autoIncrement:true});
+    };
+    r.onsuccess=()=>{db=r.result;res(db)};
+    r.onerror=()=>rej(r.error);
+  });
+}
+async function dbSave(store,data){
+  if(!db)return null;
+  return new Promise(res=>{
+    const r=db.transaction(store,'readwrite').objectStore(store).add({...data,time:data.time||Date.now()});
+    r.onsuccess=()=>res(r.result);r.onerror=()=>res(null);
+  });
+}
+async function dbPut(store,data){
+  if(!db||!data.id)return;
+  return new Promise(res=>{db.transaction(store,'readwrite').objectStore(store).put(data);res();});
+}
+async function dbGetAll(store){if(!db)return[];return new Promise(res=>{const r=db.transaction(store,'readonly').objectStore(store).getAll();r.onsuccess=()=>res(r.result||[]);r.onerror=()=>res([]);});}
+async function dbClear(store){if(!db)return;db.transaction(store,'readwrite').objectStore(store).clear();}
+
+// ====== NAVIGATION ======
+function goPage(p){
+  document.querySelectorAll('.page').forEach(el=>{el.style.display='none';el.classList.remove('active')});
+  const pg=document.getElementById('page-'+p);
+  if(!pg)return;
+  if(p==='ai'){pg.style.display='flex';pg.classList.add('active')}
+  else{pg.style.display='block';pg.classList.add('active')}
+  document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
+  const bn=document.getElementById('bn-'+p);
+  if(bn)bn.classList.add('active');
+  window.scrollTo(0,0);
+  if(p==='profile'){renderCases();updateProfileUI();renderReferralTiers();}
+  if(p==='ai')updateQuotaUI();
+  if(p==='charity'){renderCharityBoard();}
+  if(p==='careers'&&!window._careerInit){initCareerHR();window._careerInit=true;}
+}
+
+// ====== MODALS ======
+function openModal(id){document.getElementById(id).classList.add('open')}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open')}));
+
+// ====== TOAST ======
+function showToast(msg,dur=3000){
+  document.querySelectorAll('.toast').forEach(t=>t.remove());
+  const t=document.createElement('div');t.className='toast';t.textContent=msg;
+  document.body.appendChild(t);setTimeout(()=>t.remove(),dur);
+}
+
+// ====== CASES DATA ======
+const CASES=[
+  {id:1,icon:'⚖️',color:'rgba(59,130,246,.15)',title:'پرونده طلاق',meta:'ثبت: ۱۴۰۳/۰۸/۲۰ · حقوقی',status:'active',statusTxt:'در حال پیگیری',progress:60},
+  {id:2,icon:'🛡️',color:'rgba(34,197,94,.15)',title:'بیمه عمر پارسیان',meta:'ثبت: ۱۴۰۳/۰۹/۰۱ · بیمه',status:'done',statusTxt:'تکمیل‌شده',progress:100},
+  {id:3,icon:'🔗',color:'rgba(168,85,247,.15)',title:'مشاوره سبد کریپتو',meta:'ثبت: ۱۴۰۳/۰۹/۱۰ · رمزارز',status:'pending',statusTxt:'در انتظار',progress:20},
+];
+
+function renderCases(){
+  const el=document.getElementById('cases-preview');
+  if(!el)return;
+  el.innerHTML=CASES.map(c=>`
+    <div class="case-item" onclick="showToast('جزئیات: ${c.title}')">
+      <div class="case-header">
+        <div class="case-icon" style="background:${c.color}">${c.icon}</div>
+        <div class="case-title">${c.title}</div>
+        <span class="case-status status-${c.status}">${c.statusTxt}</span>
+      </div>
+      <div class="case-meta">${c.meta}</div>
+      <div class="case-progress"><div class="case-progress-bar" style="width:${c.progress}%"></div></div>
+    </div>`).join('');
+
+  const mc=document.getElementById('modal-cases-content');
+  if(mc)mc.innerHTML=el.innerHTML;
+}
+
+// ====== ADMIN TABS ======
+function adminTab(btn,tab){
+  document.querySelectorAll('#page-admin .tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['req','users','ai-stats','settings'].forEach(t=>{ const el=document.getElementById('admin-'+t); if(el)el.style.display='none'; });
+  const map={'درخواست‌ها':'req','کاربران':'users','آمار AI':'ai-stats','تنظیمات':'settings'};
+  const el=document.getElementById('admin-'+map[tab]);
+  if(el)el.style.display='block';
+}
+
+// ====== TOOL TABS ======
+function switchTab(btn,tab){
+  document.querySelectorAll('#page-tools .tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['حقوقی','بیمه','بورس','رمزارز'].forEach(t=>{const el=document.getElementById('tab-'+t);if(el)el.style.display='none';});
+  const el=document.getElementById('tab-'+tab);if(el)el.style.display='block';
+}
+
+// ====== TOOLS ======
+const TOOLS={
+  mahr:{title:'💍 محاسبه مهریه',html:`
+    <div class="form-group"><label class="form-label">تعداد سکه (عقد)</label><input class="form-input" id="mahr-coins" type="number" placeholder="مثال: ۱۴" value="14"></div>
+    <div class="form-group"><label class="form-label">سال عقد</label><select class="form-select" id="mahr-year"><option value="1390">۱۳۹۰</option><option value="1395">۱۳۹۵</option><option value="1400">۱۴۰۰</option><option value="1402" selected>۱۴۰۲</option><option value="1403">۱۴۰۳</option></select></div>
+    <button class="btn-full" onclick="calcMahr()">محاسبه</button>
+    <div class="result-box" id="mahr-result">
+      <div class="result-label">مهریه به‌روز شده</div>
+      <div class="result-value" id="mahr-val"></div>
+      <div class="result-note" id="mahr-note"></div>
+    </div>`},
+  delay:{title:'⏳ تأخیر تأدیه',html:`
+    <div class="form-group"><label class="form-label">مبلغ اصلی (تومان)</label><input class="form-input" id="delay-amount" type="number" placeholder="۱۰۰۰۰۰۰۰۰"></div>
+    <div class="form-group"><label class="form-label">تاریخ سررسید</label><input class="form-input" id="delay-date" type="date"></div>
+    <div class="form-group"><label class="form-label">نرخ تورم سالانه (%)</label><input class="form-input" id="delay-rate" type="number" value="40" placeholder="۴۰"></div>
+    <button class="btn-full" onclick="calcDelay()">محاسبه خسارت</button>
+    <div class="result-box" id="delay-result">
+      <div class="result-label">خسارت تأخیر تأدیه</div>
+      <div class="result-value" id="delay-val"></div>
+      <div class="result-note" id="delay-note"></div>
+    </div>`},
+  court:{title:'🏛️ هزینه دادرسی',html:`
+    <div class="form-group"><label class="form-label">نوع دعوا</label><select class="form-select" id="court-type"><option value="mali">مالی</option><option value="gheyr">غیرمالی</option><option value="family">خانواده</option></select></div>
+    <div class="form-group"><label class="form-label">مرحله رسیدگی</label><select class="form-select" id="court-stage"><option value="1">بدوی</option><option value="2">تجدیدنظر</option><option value="3">دیوان عالی</option></select></div>
+    <div class="form-group"><label class="form-label">خواسته (تومان)</label><input class="form-input" id="court-val" type="number" placeholder="۵۰۰۰۰۰۰۰۰"></div>
+    <button class="btn-full" onclick="calcCourt()">محاسبه</button>
+    <div class="result-box" id="court-result">
+      <div class="result-label">هزینه دادرسی</div>
+      <div class="result-value" id="court-val-result"></div>
+      <div class="result-note" id="court-note"></div>
+    </div>`},
+  lawyer:{title:'👨‍⚖️ حق‌الوکاله',html:`
+    <div class="form-group"><label class="form-label">نوع پرونده</label><select class="form-select" id="law-type"><option value="civil">مدنی</option><option value="criminal">کیفری</option><option value="family">خانواده</option><option value="commerce">تجاری</option></select></div>
+    <div class="form-group"><label class="form-label">ارزش پرونده (تومان)</label><input class="form-input" id="law-val" type="number" placeholder="۲۰۰۰۰۰۰۰۰"></div>
+    <button class="btn-full" onclick="calcLawyer()">محاسبه</button>
+    <div class="result-box" id="lawyer-result">
+      <div class="result-label">حق‌الوکاله تخمینی</div>
+      <div class="result-value" id="lawyer-val"></div>
+      <div class="result-note" id="lawyer-note"></div>
+    </div>`},
+  'insurance-calc':{title:'🚗 بیمه شخص ثالث',html:`
+    <div class="form-group"><label class="form-label">نوع خودرو</label><select class="form-select" id="ins-type"><option value="pride">پراید/تیبا</option><option value="peugeot">پژو ۲۰۶/۴۰۵</option><option value="samand">سمند/دنا</option><option value="suv">شاسی‌بلند داخلی</option><option value="foreign">خودرو خارجی</option></select></div>
+    <div class="form-group"><label class="form-label">سال ساخت</label><select class="form-select" id="ins-year"><option>۱۳۹۵</option><option>۱۳۹۷</option><option>۱۳۹۹</option><option>۱۴۰۰</option><option selected>۱۴۰۲</option><option>۱۴۰۳</option></select></div>
+    <div class="form-group"><label class="form-label">سابقه تخفیف</label><select class="form-select" id="ins-disc"><option value="0">بدون تخفیف</option><option value="10">۱ سال (۱۰٪)</option><option value="20">۲ سال (۲۰٪)</option><option value="30">۳ سال+ (۳۰٪)</option></select></div>
+    <button class="btn-full" onclick="calcInsurance()">محاسبه حق بیمه</button>
+    <div class="result-box" id="ins-result">
+      <div class="result-label">حق بیمه سالانه</div>
+      <div class="result-value" id="ins-val"></div>
+      <div class="result-note" id="ins-note"></div>
+    </div>`},
+  'life-ins':{title:'❤️ بیمه عمر',html:`
+    <div class="form-group"><label class="form-label">سن بیمه‌شده</label><input class="form-input" id="life-age" type="number" placeholder="۳۵" value="35"></div>
+    <div class="form-group"><label class="form-label">مدت بیمه (سال)</label><select class="form-select" id="life-dur"><option>۵</option><option>۱۰</option><option selected>۲۰</option><option>۳۰</option></select></div>
+    <div class="form-group"><label class="form-label">سرمایه فوت (میلیون تومان)</label><input class="form-input" id="life-cap" type="number" placeholder="۱۰۰۰" value="1000"></div>
+    <button class="btn-full" onclick="calcLife()">محاسبه</button>
+    <div class="result-box" id="life-result">
+      <div class="result-label">حق بیمه ماهانه</div>
+      <div class="result-value" id="life-val"></div>
+      <div class="result-note" id="life-note"></div>
+    </div>`},
+  portfolio:{title:'📈 سود/زیان پرتفوی',html:`
+    <div class="form-group"><label class="form-label">قیمت خرید (تومان)</label><input class="form-input" id="port-buy" type="number" placeholder="۱۵۰۰۰"></div>
+    <div class="form-group"><label class="form-label">تعداد سهام</label><input class="form-input" id="port-qty" type="number" placeholder="۱۰۰۰"></div>
+    <div class="form-group"><label class="form-label">قیمت فعلی (تومان)</label><input class="form-input" id="port-now" type="number" placeholder="۱۸۰۰۰"></div>
+    <button class="btn-full" onclick="calcPortfolio()">محاسبه</button>
+    <div class="result-box" id="port-result">
+      <div class="result-label">سود/زیان</div>
+      <div class="result-value" id="port-val"></div>
+      <div class="result-note" id="port-note"></div>
+    </div>`},
+  compound:{title:'💹 سود مرکب',html:`
+    <div class="form-group"><label class="form-label">سرمایه اولیه (تومان)</label><input class="form-input" id="comp-p" type="number" placeholder="۱۰۰۰۰۰۰۰۰" value="100000000"></div>
+    <div class="form-group"><label class="form-label">نرخ سود سالانه (%)</label><input class="form-input" id="comp-r" type="number" placeholder="۳۵" value="35"></div>
+    <div class="form-group"><label class="form-label">مدت (سال)</label><input class="form-input" id="comp-n" type="number" placeholder="۵" value="5"></div>
+    <button class="btn-full" onclick="calcCompound()">محاسبه رشد</button>
+    <div class="result-box" id="comp-result">
+      <div class="result-label">ارزش نهایی</div>
+      <div class="result-value" id="comp-val"></div>
+      <div class="result-note" id="comp-note"></div>
+    </div>`},
+  'crypto-calc':{title:'💱 تبدیل رمزارز',html:`
+    <div class="form-group"><label class="form-label">ارز دیجیتال</label><select class="form-select" id="crypto-coin"><option value="bitcoin">بیت‌کوین (BTC)</option><option value="ethereum">اتریوم (ETH)</option><option value="tether">تتر (USDT)</option><option value="bnb">بایننس (BNB)</option></select></div>
+    <div class="form-group"><label class="form-label">مقدار</label><input class="form-input" id="crypto-amount" type="number" placeholder="۰.۱" value="0.1" step="0.001"></div>
+    <button class="btn-full" onclick="calcCrypto()">تبدیل به ریال/دلار</button>
+    <div class="result-box" id="crypto-result">
+      <div class="result-label">ارزش تقریبی</div>
+      <div class="result-value" id="crypto-val"></div>
+      <div class="result-note" id="crypto-note"></div>
+    </div>`},
+  'crypto-pnl':{title:'📊 سود/زیان کریپتو',html:`
+    <div class="form-group"><label class="form-label">قیمت خرید (دلار)</label><input class="form-input" id="cpnl-buy" type="number" placeholder="۴۵۰۰۰"></div>
+    <div class="form-group"><label class="form-label">مقدار خریداری شده</label><input class="form-input" id="cpnl-qty" type="number" placeholder="۰.۵" step="0.0001"></div>
+    <div class="form-group"><label class="form-label">قیمت فعلی (دلار)</label><input class="form-input" id="cpnl-now" type="number" placeholder="۶۵۰۰۰"></div>
+    <button class="btn-full" onclick="calcCryptoPnl()">محاسبه P&L</button>
+    <div class="result-box" id="cpnl-result">
+      <div class="result-label">سود/زیان</div>
+      <div class="result-value" id="cpnl-val"></div>
+      <div class="result-note" id="cpnl-note"></div>
+    </div>`},
+  dca:{title:'🔄 DCA Calculator',html:`
+    <div class="form-group"><label class="form-label">مبلغ خرید ماهانه (دلار)</label><input class="form-input" id="dca-m" type="number" placeholder="۱۰۰" value="100"></div>
+    <div class="form-group"><label class="form-label">تعداد ماه</label><input class="form-input" id="dca-n" type="number" placeholder="۱۲" value="12"></div>
+    <div class="form-group"><label class="form-label">قیمت فعلی (دلار)</label><input class="form-input" id="dca-price" type="number" placeholder="۶۵۰۰۰"></div>
+    <button class="btn-full" onclick="calcDCA()">محاسبه</button>
+    <div class="result-box" id="dca-result">
+      <div class="result-label">میانگین قیمت خرید</div>
+      <div class="result-value" id="dca-val"></div>
+      <div class="result-note" id="dca-note"></div>
+    </div>`},
+  'tax-stock':{title:'📋 مالیات نقل و انتقال',html:`
+    <div class="form-group"><label class="form-label">ارزش کل معامله (تومان)</label><input class="form-input" id="tax-val" type="number" placeholder="۵۰۰۰۰۰۰۰۰"></div>
+    <div class="form-group"><label class="form-label">نوع سهام</label><select class="form-select" id="tax-type"><option value="bourse">بورسی (۰.۵٪)</option><option value="nabourse">غیربورسی (۴٪)</option><option value="etf">صندوق ETF (معاف)</option></select></div>
+    <button class="btn-full" onclick="calcTaxStock()">محاسبه مالیات</button>
+    <div class="result-box" id="tax-result">
+      <div class="result-label">مالیات نقل و انتقال</div>
+      <div class="result-value" id="tax-val-result"></div>
+      <div class="result-note" id="tax-note"></div>
+    </div>`},
+  'compare-ins':{title:'📊 مقایسه بیمه‌ها',html:`
+    <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px">
+      <tr style="border-bottom:1px solid var(--border2)"><th style="padding:10px 8px;text-align:right;color:var(--gold)">شرکت</th><th style="padding:10px 8px;color:var(--text2)">ثالث</th><th style="padding:10px 8px;color:var(--text2)">بدنه</th><th style="padding:10px 8px;color:var(--text2)">امتیاز</th></tr>
+      <tr style="border-bottom:1px solid var(--border2)"><td style="padding:10px 8px;font-weight:600">ایران</td><td style="padding:10px 8px;color:var(--text2)">۳.۲م</td><td style="padding:10px 8px;color:var(--text2)">۱۸م</td><td style="padding:10px 8px;color:var(--green)">⭐⭐⭐⭐</td></tr>
+      <tr style="border-bottom:1px solid var(--border2)"><td style="padding:10px 8px;font-weight:600">آسیا</td><td style="padding:10px 8px;color:var(--text2)">۲.۹م</td><td style="padding:10px 8px;color:var(--text2)">۱۶م</td><td style="padding:10px 8px;color:var(--gold)">⭐⭐⭐⭐</td></tr>
+      <tr style="border-bottom:1px solid var(--border2)"><td style="padding:10px 8px;font-weight:600">پارسیان</td><td style="padding:10px 8px;color:var(--text2)">۳.۵م</td><td style="padding:10px 8px;color:var(--text2)">۲۰م</td><td style="padding:10px 8px;color:var(--gold)">⭐⭐⭐⭐⭐</td></tr>
+      <tr><td style="padding:10px 8px;font-weight:600">دانا</td><td style="padding:10px 8px;color:var(--text2)">۲.۷م</td><td style="padding:10px 8px;color:var(--text2)">۱۴م</td><td style="padding:10px 8px;color:var(--text3)">⭐⭐⭐</td></tr>
+    </table></div>
+    <button class="btn-full" style="margin-top:14px" onclick="showToast('برای مشاوره تخصصی با تیم موسسه تماس بگیرید')">مشاوره رایگان بیمه</button>`},
+};
+
+function openTool(id){
+  const t=TOOLS[id];if(!t)return;
+  document.getElementById('tool-modal-title').innerHTML=t.title+' <button class="modal-close" onclick="closeModal(\'modal-tool\')">✕</button>';
+  document.getElementById('tool-modal-content').innerHTML=t.html;
+  openModal('modal-tool');
+}
+
+// ====== CALC FUNCTIONS ======
+function fmt(n){return new Intl.NumberFormat('fa-IR').format(Math.round(n))+' تومان';}
+function fmtNum(n){return new Intl.NumberFormat('fa-IR').format(Math.round(n));}
+
+function calcMahr(){
+  const coins=+document.getElementById('mahr-coins').value||14;
+  const year=+document.getElementById('mahr-year').value||1402;
+  const basePrice=coins*500000;
+  const inflation=Math.pow(1.3,(1403-year));
+  const updated=basePrice*inflation;
+  document.getElementById('mahr-val').textContent=fmt(updated);
+  document.getElementById('mahr-note').textContent=`بر اساس ${coins} سکه با احتساب شاخص تورم از سال ${year} تا ۱۴۰۳. برای محاسبه دقیق با کارشناس تماس بگیرید.`;
+  const r=document.getElementById('mahr-result');r.classList.add('show');
+}
+
+function calcDelay(){
+  const amount=+document.getElementById('delay-amount').value||0;
+  const rate=(+document.getElementById('delay-rate').value||40)/100;
+  const dateEl=document.getElementById('delay-date').value;
+  if(!amount){showToast('مبلغ را وارد کنید');return;}
+  const days=dateEl?Math.max(0,Math.round((new Date()-new Date(dateEl))/(1000*60*60*24))):365;
+  const damage=amount*(Math.pow(1+rate,days/365)-1);
+  document.getElementById('delay-val').textContent=fmt(damage);
+  document.getElementById('delay-note').textContent=`خسارت تأخیر برای ${fmtNum(days)} روز با نرخ تورم ${(rate*100).toFixed(0)}٪ (ماده ۵۲۲ قانون آیین دادرسی مدنی)`;
+  document.getElementById('delay-result').classList.add('show');
+}
+
+function calcCourt(){
+  const type=document.getElementById('court-type').value;
+  const stage=+document.getElementById('court-stage').value;
+  const val=+document.getElementById('court-val').value||0;
+  let fee=0;
+  if(type==='mali'){
+    if(val<=2e7)fee=val*.03;
+    else if(val<=2e8)fee=val*.025;
+    else fee=val*.02;
+    if(stage===2)fee*=1.5;
+    if(stage===3)fee*=2;
+  }else if(type==='family'){fee=2500000;}
+  else{fee=stage===1?1500000:stage===2?2000000:3000000;}
+  document.getElementById('court-val-result').textContent=fmt(fee);
+  document.getElementById('court-note').textContent=`بر اساس تعرفه قوه قضاییه ${stage===1?'(مرحله بدوی)':stage===2?'(مرحله تجدیدنظر)':'(دیوان عالی)'}`;
+  document.getElementById('court-result').classList.add('show');
+}
+
+function calcLawyer(){
+  const val=+document.getElementById('law-val').value||0;
+  let pct=0.1;
+  if(val>1e9)pct=0.07;
+  if(val>5e9)pct=0.05;
+  const fee=Math.max(val*pct,5000000);
+  document.getElementById('lawyer-val').textContent=fmt(fee);
+  document.getElementById('lawyer-note').textContent=`تخمین حق‌الوکاله بر اساس آیین‌نامه تعرفه. مبلغ توافقی ممکن است متفاوت باشد.`;
+  document.getElementById('lawyer-result').classList.add('show');
+}
+
+function calcInsurance(){
+  const type=document.getElementById('ins-type').value;
+  const disc=+document.getElementById('ins-disc').value||0;
+  const base={'pride':2800000,'peugeot':3200000,'samand':3500000,'suv':4200000,'foreign':5500000};
+  const fee=base[type]*(1-disc/100);
+  document.getElementById('ins-val').textContent=fmt(fee);
+  document.getElementById('ins-note').textContent=`حق بیمه سالانه شخص ثالث پایه. بیمه بدنه جداگانه محاسبه می‌شود. با ${disc}٪ تخفیف عدم خسارت.`;
+  document.getElementById('ins-result').classList.add('show');
+}
+
+function calcLife(){
+  const age=+document.getElementById('life-age').value||35;
+  const dur=+document.getElementById('life-dur').value||20;
+  const cap=+document.getElementById('life-cap').value||1000;
+  const rate=age<40?0.0015:age<50?0.002:0.003;
+  const monthly=cap*1e6*rate*(1+dur*0.02);
+  document.getElementById('life-val').textContent=fmt(monthly)+'/ماه';
+  document.getElementById('life-note').textContent=`سرمایه فوت: ${fmtNum(cap)} میلیون تومان | مدت: ${dur} سال | سن: ${age} سال. برای پیشنهاد دقیق تماس بگیرید.`;
+  document.getElementById('life-result').classList.add('show');
+}
+
+function calcPortfolio(){
+  const buy=+document.getElementById('port-buy').value||0;
+  const qty=+document.getElementById('port-qty').value||0;
+  const now=+document.getElementById('port-now').value||0;
+  if(!buy||!qty||!now){showToast('همه فیلدها را پر کنید');return;}
+  const pnl=(now-buy)*qty;
+  const pct=((now-buy)/buy*100).toFixed(1);
+  document.getElementById('port-val').style.color=pnl>=0?'var(--green)':'var(--red)';
+  document.getElementById('port-val').textContent=(pnl>=0?'+':'')+fmt(pnl);
+  document.getElementById('port-note').textContent=`${pnl>=0?'سود':'زیان'} ${Math.abs(pct)}٪ | ارزش کل: ${fmt(now*qty)} | اصل سرمایه: ${fmt(buy*qty)}`;
+  document.getElementById('port-result').classList.add('show');
+}
+
+function calcCompound(){
+  const p=+document.getElementById('comp-p').value||1e8;
+  const r=+document.getElementById('comp-r').value/100||0.35;
+  const n=+document.getElementById('comp-n').value||5;
+  const final=p*Math.pow(1+r,n);
+  document.getElementById('comp-val').textContent=fmt(final);
+  document.getElementById('comp-note').textContent=`سود کل: ${fmt(final-p)} | رشد ${((final/p-1)*100).toFixed(0)}٪ در ${n} سال با نرخ ${(r*100).toFixed(0)}٪ سالانه`;
+  document.getElementById('comp-result').classList.add('show');
+}
+
+function calcCrypto(){
+  const coin=document.getElementById('crypto-coin').value;
+  const amt=+document.getElementById('crypto-amount').value||0.1;
+  const prices={bitcoin:65000,ethereum:3400,tether:1,bnb:400};
+  const usd=prices[coin]*amt;
+  const irr=usd*62000;
+  document.getElementById('crypto-val').textContent=fmtNum(Math.round(irr/10))+' تومان';
+  document.getElementById('crypto-note').textContent=`معادل $${usd.toFixed(2)} | نرخ دلار تقریبی: ۶۲,۰۰۰ تومان. قیمت‌ها لحظه‌ای نیست.`;
+  document.getElementById('crypto-result').classList.add('show');
+}
+
+function calcCryptoPnl(){
+  const buy=+document.getElementById('cpnl-buy').value||0;
+  const qty=+document.getElementById('cpnl-qty').value||0;
+  const now=+document.getElementById('cpnl-now').value||0;
+  if(!buy||!qty||!now){showToast('همه فیلدها را پر کنید');return;}
+  const pnl=(now-buy)*qty;
+  const pct=((now-buy)/buy*100).toFixed(1);
+  document.getElementById('cpnl-val').style.color=pnl>=0?'var(--green)':'var(--red)';
+  document.getElementById('cpnl-val').textContent=(pnl>=0?'+':'')+`$${pnl.toFixed(2)}`;
+  document.getElementById('cpnl-note').textContent=`${pnl>=0?'سود':'زیان'} ${Math.abs(pct)}٪ | معادل تومان: ${fmt(pnl*62000)}`;
+  document.getElementById('cpnl-result').classList.add('show');
+}
+
+function calcDCA(){
+  const m=+document.getElementById('dca-m').value||100;
+  const n=+document.getElementById('dca-n').value||12;
+  const price=+document.getElementById('dca-price').value||65000;
+  const totalUSD=m*n;
+  const totalCoins=Array.from({length:n},(_,i)=>m/(price*(0.85+i*0.05/n))).reduce((a,b)=>a+b,0);
+  const avg=totalUSD/totalCoins;
+  document.getElementById('dca-val').textContent=`$${avg.toFixed(0)}`;
+  document.getElementById('dca-note').textContent=`کل سرمایه‌گذاری: $${totalUSD} | کل کوین: ${totalCoins.toFixed(6)} | قیمت فعلی: $${price}`;
+  document.getElementById('dca-result').classList.add('show');
+}
+
+function calcTaxStock(){
+  const val=+document.getElementById('tax-val').value||0;
+  const type=document.getElementById('tax-type').value;
+  const rates={bourse:0.005,nabourse:0.04,etf:0};
+  const tax=val*rates[type];
+  document.getElementById('tax-val-result').textContent=tax===0?'معاف از مالیات':fmt(tax);
+  document.getElementById('tax-val-result').style.color=tax===0?'var(--green)':'var(--red)';
+  document.getElementById('tax-note').textContent=type==='etf'?'صندوق‌های ETF از مالیات نقل و انتقال معاف هستند.':type==='bourse'?'نرخ مالیات سهام بورسی: ۰.۵٪':'نرخ مالیات سهام غیربورسی: ۴٪';
+  document.getElementById('tax-result').classList.add('show');
+}
+
+// ====== SERVICES ======
+const SERVICES={
+  legal:{title:'⚖️ خدمات حقوقی',html:`
+    <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:16px">وکالت، نیابت قضایی و مشاوره حقوقی در تمام حوزه‌ها توسط تیم متخصص موسسه.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+      <div style="padding:10px;background:var(--dark3);border-radius:10px;font-size:12px;display:flex;gap:8px;align-items:center"><span>✅</span>طلاق، مهریه، حضانت، نفقه</div>
+      <div style="padding:10px;background:var(--dark3);border-radius:10px;font-size:12px;display:flex;gap:8px;align-items:center"><span>✅</span>دعاوی کیفری و دفاع از متهم</div>
+      <div style="padding:10px;background:var(--dark3);border-radius:10px;font-size:12px;display:flex;gap:8px;align-items:center"><span>✅</span>امور ملکی و قراردادها</div>
+      <div style="padding:10px;background:var(--dark3);border-radius:10px;font-size:12px;display:flex;gap:8px;align-items:center"><span>✅</span>حقوق تجاری، چک، برات</div>
+      <div style="padding:10px;background:var(--dark3);border-radius:10px;font-size:12px;display:flex;gap:8px;align-items:center"><span>✅</span>حقوق فناوری و رمزارز</div>
+    </div>
+    <button class="btn-full" onclick="closeModal('modal-service');goPage('ai');quickMsg('مشاوره حقوقی می‌خوام')">مشاوره رایگان با AI</button>
+    <button style="width:100%;padding:12px;background:transparent;color:var(--gold);border:1px solid var(--border);border-radius:10px;font-size:13px;font-weight:600;margin-top:8px" onclick="showToast('تماس با محمود: ۰۹۳۸۸۳۰۲۰۰۰')">📞 تماس مستقیم</button>`},
+  admin:{title:'🏛️ کارپردازی اداری',html:`
+    <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:16px">کارمندان ما به جای شما به ادارات مراجعه می‌کنند و کارها را انجام می‌دهند.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+      <div style="padding:10px;background:var(--dark3);border-radius:10px;font-size:12px">📋 ثبت‌احوال، دارایی، شهرداری</div>
+      <div style="padding:10px;background:var(--dark3);border-radius:10px;font-size:12px">📋 بیمه تامین اجتماعی، ثبت اسناد</div>
+      <div style="padding:10px;background:var(--dark3);border-radius:10px;font-size:12px">📋 ثبت شرکت و برندها</div>
+    </div>
+    <button class="btn-full" onclick="showToast('فرم ثبت درخواست کارپردازی')">ثبت درخواست</button>`},
+  insurance:{title:'🛡️ خدمات بیمه',html:`
+    <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:16px">مشاوره و فروش همه انواع بیمه با بهترین قیمت.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
+      <div style="padding:12px;background:var(--dark3);border-radius:10px;text-align:center;font-size:12px">🚗<br>ثالث و بدنه</div>
+      <div style="padding:12px;background:var(--dark3);border-radius:10px;text-align:center;font-size:12px">❤️<br>بیمه عمر</div>
+      <div style="padding:12px;background:var(--dark3);border-radius:10px;text-align:center;font-size:12px">🏥<br>درمان</div>
+      <div style="padding:12px;background:var(--dark3);border-radius:10px;text-align:center;font-size:12px">🔥<br>آتش‌سوزی</div>
+    </div>
+    <button class="btn-full" onclick="closeModal('modal-service');goPage('tools');switchTab(document.querySelector('#page-tools .tab-btn:nth-child(2)'),'بیمه')">محاسبه حق بیمه</button>`},
+  stocks:{title:'📈 مشاوره بورس',html:`
+    <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:16px">با ۸ سال تجربه بازار مالی محمود میرکمالی، سبد بورسی شما را مدیریت می‌کنیم.</p>
+    <button class="btn-full" onclick="closeModal('modal-service');goPage('ai');quickMsg('مشاوره بورس و سرمایه‌گذاری می‌خوام')">مشاوره AI رایگان</button>`},
+  crypto:{title:'🔗 ارز دیجیتال',html:`
+    <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:16px">سبدگردانی و مشاوره رمزارز توسط محمود میرکمالی — متخصص ۸ ساله بازار کریپتو.</p>
+    <button class="btn-full" onclick="closeModal('modal-service');goPage('ai');quickMsg('مشاوره سبد ارز دیجیتال می‌خوام')">مشاوره رایگان</button>`},
+};
+
+function openService(id){
+  const s=SERVICES[id];if(!s)return;
+  document.getElementById('service-modal-title').innerHTML=s.title+' <button class="modal-close" onclick="closeModal(\'modal-service\')">✕</button>';
+  document.getElementById('service-modal-content').innerHTML=s.html;
+  openModal('modal-service');
+}
+
+function showPlanModal(type){
+  openModal('modal-plans');
+  const p=PLANS[type];
+  if(p)setTimeout(()=>showToast(`${p.label}: ${p.display} تومان`),300);
+}
+
+// ====== PLANS & USAGE ======
+const PLANS={
+  monthly:{price:499000,display:'۴۹۹,۰۰۰',label:'ماهانه',days:30},
+  quarterly:{price:999000,display:'۹۹۹,۰۰۰',label:'سه‌ماهه',days:90},
+  semiannual:{price:1698000,display:'۱,۶۹۸,۰۰۰',label:'شش‌ماهه',days:180},
+  yearly:{price:3396000,display:'۳,۳۹۶,۰۰۰',label:'سالانه',days:365},
+  lifetime:{price:0,display:'رایگان',label:'مادام‌العمر',days:36500}
+};
+const FREE_MSG=7;
+const REVIEW_BONUS=10;
+const LIFETIME_MONTHLY_CAP=100;
+const LIFETIME_MAX_TOKENS=600;
+const REFERRAL_TIERS=[
+  {icon:'🎁',needTotal:5,needPaid:1,reward:'monthly',title:'۵ معرفی (حداقل ۱ خریدار)',desc:'اشتراک ماهانه رایگان'},
+  {icon:'🥇',needTotal:0,needPaid:3,reward:'quarterly',title:'۳ خریدار اشتراک',desc:'اشتراک ۳ ماهه رایگان'},
+  {icon:'💎',needTotal:0,needPaid:6,reward:'semiannual',title:'۶ خریدار اشتراک',desc:'اشتراک ۶ ماهه رایگان'},
+  {icon:'♾️',needTotal:0,needPaid:12,reward:'lifetime',title:'۱۲ خریدار اشتراک',desc:'مادام‌العمر (۱۰۰ پیام/ماه)'}
+];
+
+function defaultUser(){
+  const code='PVZ-'+Math.random().toString(36).slice(2,8).toUpperCase();
+  return{msgCount:0,reviewSubmitted:false,referralCode:code,referralsTotal:0,referralsPaid:0,subscription:null,lifetimeMonthCount:0,lifetimeMonthKey:''};
+}
+function loadUser(){
+  try{
+    const u=JSON.parse(localStorage.getItem('parvaaz-user')||'null');
+    if(!u||!u.referralCode)return defaultUser();
+    return Object.assign(defaultUser(),u);
+  }catch{return defaultUser();}
+}
+function saveUser(u){localStorage.setItem('parvaaz-user',JSON.stringify(u));}
+let userState=loadUser();
+
+function getActiveSubscription(){
+  const s=userState.subscription;
+  if(!s)return null;
+  if(s.type==='lifetime')return s;
+  if(s.expiresAt&&Date.now()>s.expiresAt){userState.subscription=null;saveUser(userState);return null;}
+  return s;
+}
+function grantSubscription(type,source,days){
+  const d=days||PLANS[type]?.days||30;
+  userState.subscription={
+    type,source,
+    expiresAt:type==='lifetime'?null:Date.now()+d*86400000,
+    startedAt:Date.now()
+  };
+  saveUser(userState);
+  updateProfileUI();updateQuotaUI();
+}
+const PAYMENT_CARD='6219861926284190';
+const PAYMENT_NAME='سید محمود میرکمالی';
+
+function copyPaymentCard(){
+  const num=PAYMENT_CARD.replace(/(\d{4})(?=\d)/g,'$1-');
+  navigator.clipboard?.writeText(PAYMENT_CARD);
+  try{const t=document.createElement('textarea');t.value=PAYMENT_CARD;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();}catch(e){}
+  showToast('✅ کارت '+num+' کپی شد — '+PAYMENT_NAME);
+}
+function purchasePlan(id){
+  const p=PLANS[id];if(!p)return;
+  copyPaymentCard();
+  showToast(`💳 مبلغ ${p.display} تومان را به کارت ${PAYMENT_NAME} واریز کنید`);
+  setTimeout(()=>{
+    if(!confirm(`آیا واریز ${p.display} تومان انجام شد؟\nکارت: ${PAYMENT_CARD}\n${PAYMENT_NAME}`))return;
+    closeModal('modal-plans');
+    grantSubscription(id,'paid',p.days);
+    const ref=localStorage.getItem('parvaaz-referred');
+    if(ref){
+      const stats=JSON.parse(localStorage.getItem('parvaaz-ref-stats-'+ref)||'{"total":0,"paid":0}');
+      stats.paid=(stats.paid||0)+1;
+      localStorage.setItem('parvaaz-ref-stats-'+ref,JSON.stringify(stats));
+    }
+    showToast(`✅ اشتراک ${p.label} فعال شد`);
+  },800);
+}
+function applyReferralRewards(){
+  const t=userState.referralsTotal,p=userState.referralsPaid;
+  const cur=getActiveSubscription();
+  let best=null;
+  if(p>=12)best={type:'lifetime',source:'referral'};
+  else if(p>=6)best={type:'semiannual',source:'referral'};
+  else if(p>=3)best={type:'quarterly',source:'referral'};
+  else if(t>=5&&p>=1)best={type:'monthly',source:'referral'};
+  if(!best)return;
+  const rank={monthly:1,quarterly:2,semiannual:3,yearly:4,lifetime:5};
+  if(cur&&rank[cur.type]>=rank[best.type]&&cur.source==='paid')return;
+  if(cur&&cur.type===best.type&&cur.source===best.source)return;
+  grantSubscription(best.type,best.source,PLANS[best.type].days);
+  showToast(`🎉 جایزه معرفی: اشتراک ${PLANS[best.type].label} فعال شد!`);
+}
+function registerReferralFromUrl(){
+  const ref=new URLSearchParams(location.search).get('ref');
+  if(!ref||localStorage.getItem('parvaaz-referred'))return;
+  localStorage.setItem('parvaaz-referred',ref);
+  showToast('✅ با کد معرف ثبت‌نام شدید');
+}
+function copyReferralCode(){
+  const inp=document.getElementById('referral-code-input');
+  if(inp){inp.select();document.execCommand('copy');showToast('کد معرف کپی شد');}
+}
+function shareReferral(){
+  const url=location.origin+location.pathname+'?ref='+userState.referralCode;
+  if(navigator.share)navigator.share({title:'موسسه پرواز',text:'دستیار حقوقی هوشمند — موسسه محمود',url});
+  else{navigator.clipboard?.writeText(url);showToast('لینک معرف کپی شد');}
+}
+function renderReferralTiers(){
+  const el=document.getElementById('referral-tiers');if(!el)return;
+  const inp=document.getElementById('referral-code-input');
+  if(inp)inp.value=userState.referralCode;
+  el.innerHTML=REFERRAL_TIERS.map(t=>{
+    const done=(t.needTotal?userState.referralsTotal>=t.needTotal:true)&&(userState.referralsPaid>=t.needPaid);
+    return`<div class="referral-tier${done?' done':''}"><div class="referral-tier-icon">${t.icon}</div><div class="referral-tier-info"><strong>${t.title}</strong><br>${t.desc}</div><span class="referral-tier-badge">${done?'✓ فعال':'در انتظار'}</span></div>`;
+  }).join('');
+}
+function getFreeLimit(){
+  let limit=FREE_MSG;
+  if(userState.reviewSubmitted)limit+=REVIEW_BONUS;
+  return limit;
+}
+function getMessageQuota(){
+  const sub=getActiveSubscription();
+  if(sub){
+    if(sub.type==='lifetime'){
+      const mk=new Date().toISOString().slice(0,7);
+      if(userState.lifetimeMonthKey!==mk){userState.lifetimeMonthKey=mk;userState.lifetimeMonthCount=0;saveUser(userState);}
+      return{mode:'lifetime',used:userState.lifetimeMonthCount,limit:LIFETIME_MONTHLY_CAP,remaining:Math.max(0,LIFETIME_MONTHLY_CAP-userState.lifetimeMonthCount),unlimited:false};
+    }
+    return{mode:'paid',used:userState.msgCount,limit:-1,remaining:-1,unlimited:true};
+  }
+  const limit=getFreeLimit();
+  return{mode:'free',used:userState.msgCount,limit,remaining:Math.max(0,limit-userState.msgCount),unlimited:false};
+}
+function canSendMessage(){
+  const q=getMessageQuota();
+  if(q.unlimited)return{ok:true};
+  if(q.remaining>0)return{ok:true};
+  if(q.mode==='free'&&!userState.reviewSubmitted&&userState.msgCount>=FREE_MSG)
+    return{ok:false,action:'review',msg:'۷ پیام رایگان تمام شد. با ثبت نظر در وبسایت، ۱۰ سوال دیگر باز می‌شود.'};
+  if(q.mode==='free'&&userState.reviewSubmitted)
+    return{ok:false,action:'referral',msg:'۱۷ پیام رایگان تمام شد. با معرفی دوستان یا خرید اشتراک ادامه دهید.'};
+  if(q.mode==='lifetime')
+    return{ok:false,action:'upgrade',msg:`سقف ماهانه مادام‌العمر (${LIFETIME_MONTHLY_CAP} پیام) تمام شد. ماه بعد ریست می‌شود.`};
+  return{ok:false,action:'upgrade',msg:'سقف پیام تمام شد. اشتراک تهیه کنید یا دوستان را معرفی کنید.'};
+}
+function updateQuotaUI(){
+  const q=getMessageQuota();
+  const txt=document.getElementById('chat-quota-text');
+  const fill=document.getElementById('chat-quota-fill');
+  const warn=document.getElementById('quota-warn');
+  const warnTxt=document.getElementById('quota-warn-text');
+  const warnBtn=document.getElementById('quota-warn-btn');
+  if(!txt)return;
+  const sub=getActiveSubscription();
+  if(q.unlimited){
+    txt.textContent=sub?.type==='lifetime'?'مادام‌العمر · '+q.remaining+'/'+LIFETIME_MONTHLY_CAP+' این ماه':'اشتراک فعال · نامحدود';
+    if(fill)fill.style.width=sub?.type==='lifetime'?((q.used/q.limit)*100+'%'):'100%';
+  }else{
+    txt.textContent=`${q.remaining} از ${q.limit} پیام باقی‌مانده`;
+    if(fill)fill.style.width=((q.used/q.limit)*100)+'%';
+  }
+  const check=canSendMessage();
+  if(!check.ok&&warn){
+    warn.classList.add('show');
+    warnTxt.textContent=check.msg;
+    warnBtn.textContent=check.action==='review'?'ثبت نظر (+۱۰ سوال)':check.action==='referral'?'معرفی دوستان':'ارتقا اشتراک';
+    warnBtn.onclick=()=>{
+      if(check.action==='review')openModal('modal-review');
+      else if(check.action==='referral')goPage('profile');
+      else openModal('modal-plans');
+    };
+  }else if(warn)warn.classList.remove('show');
+}
+function updateProfileUI(){
+  const badge=document.getElementById('profile-plan-badge');
+  const cnt=document.getElementById('dash-msg-count');
+  const sub=document.getElementById('dash-msg-sub');
+  const subAct=getActiveSubscription();
+  const q=getMessageQuota();
+  if(badge){
+    if(subAct)badge.textContent=subAct.type==='lifetime'?'♾️ مادام‌العمر · توکن محدود':`⭐ ${PLANS[subAct.type].label} · فعال`;
+    else if(userState.reviewSubmitted)badge.textContent=`🆓 رایگان · ${q.remaining} پیام باقی`;
+    else badge.textContent=`🆓 رایگان · ${q.remaining} از ${FREE_MSG} پیام`;
+  }
+  if(cnt)cnt.textContent=fmtNum(userState.msgCount);
+  if(sub){
+    if(subAct&&subAct.type!=='lifetime')sub.textContent='اشتراک '+PLANS[subAct.type].label;
+    else if(subAct)sub.textContent=q.remaining+'/'+LIFETIME_MONTHLY_CAP+' این ماه';
+    else sub.textContent=q.remaining+' پیام باقی‌مانده';
+  }
+}
+function submitReview(){
+  const text=document.getElementById('review-text')?.value?.trim();
+  if(!text||text.length<10){showToast('لطفاً نظر خود را بنویسید (حداقل ۱۰ کاراکتر)');return;}
+  userState.reviewSubmitted=true;
+  saveUser(userState);
+  dbSave('forms',{type:'review',rating:document.getElementById('review-rating')?.value,text});
+  closeModal('modal-review');
+  showToast('✅ نظر ثبت شد! ۱۰ سوال دیگر باز شد');
+  updateQuotaUI();updateProfileUI();
+}
+function countUserMessage(){
+  userState.msgCount++;
+  const sub=getActiveSubscription();
+  if(sub?.type==='lifetime'){
+    const mk=new Date().toISOString().slice(0,7);
+    if(userState.lifetimeMonthKey!==mk){userState.lifetimeMonthKey=mk;userState.lifetimeMonthCount=0;}
+    userState.lifetimeMonthCount++;
+  }
+  saveUser(userState);
+  updateQuotaUI();updateProfileUI();
+}
+
+// ====== CHARITY SYSTEM ======
+const CHARITY_STATUS={submitted:'ثبت‌شده',ai_triaged:'تحلیل AI',published:'منتشر',matched:'تطبیق‌شده',in_progress:'در حال انجام',closed:'مختومه'};
+function charityTab(btn,tab){
+  document.querySelectorAll('#page-charity .tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['need','lawyer','board'].forEach(t=>{const el=document.getElementById('charity-'+t);if(el)el.style.display='none';});
+  document.getElementById('charity-'+tab).style.display='block';
+  if(tab==='board')renderCharityBoard();
+}
+function updatePipeline(step){
+  document.querySelectorAll('#charity-pipeline .pipe-step').forEach(s=>{
+    const n=+s.dataset.step;
+    s.classList.toggle('done',n<step);s.classList.toggle('active',n===step);
+  });
+}
+async function submitCharityNeed(){
+  const subject=document.getElementById('cn-subject')?.value?.trim();
+  const desc=document.getElementById('cn-desc')?.value?.trim();
+  const phone=document.getElementById('cn-phone')?.value?.trim();
+  if(!subject||!desc||desc.length<20){showToast('موضوع و شرح کامل (حداقل ۲۰ کاراکتر) الزامی است');return;}
+  updatePipeline(1);
+  const rec={type:'need',subject,desc,province:document.getElementById('cn-province')?.value,phone,status:'submitted',priority:'normal',time:Date.now()};
+  const id=await dbSave('charity',rec);
+  rec.id=id;
+  document.getElementById('charity-ai-out').textContent='⏳ در حال تحلیل پرونده «'+subject+'»...';
+  setTimeout(async()=>{
+    rec.priority=desc.match(/فوری|اضطرار|آسیب|زندان/i)?'urgent':'normal';
+    rec.status='ai_triaged';rec.aiNote=rec.priority==='urgent'?'اولویت بالا — خانواده/معیشت':'اولویت عادی — صف انتظار';
+    updatePipeline(2);
+    await dbPut('charity',rec);
+    await new Promise(r=>setTimeout(r,600));
+    rec.status='published';updatePipeline(3);
+    await dbPut('charity',rec);
+    document.getElementById('charity-ai-out').textContent='✅ پرونده «'+subject+'» تحلیل شد. اولویت: '+(rec.priority==='urgent'?'فوری 🔴':'عادی 🔵')+'. در بازار پرونده منتشر شد.';
+    showToast('✅ درخواست ثبت و توسط AI اولویت‌بندی شد');
+    ['cn-subject','cn-desc','cn-phone'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+    charityTab(document.querySelector('#page-charity .tab-btn:nth-child(3)'),'board');
+  },1200);
+}
+async function submitCharityLawyer(){
+  const name=document.getElementById('cl-name')?.value?.trim();
+  const license=document.getElementById('cl-license')?.value?.trim();
+  if(!name||!license){showToast('نام و شماره پروانه الزامی است');return;}
+  await dbSave('charity',{type:'lawyer',name,license,spec:document.getElementById('cl-spec')?.value,cap:document.getElementById('cl-cap')?.value,phone:document.getElementById('cl-phone')?.value,verified:false,status:'pending',time:Date.now()});
+  showToast('✅ ثبت‌نام شد. احراز هویت ظرف ۴۸ ساعت انجام می‌شود.');
+  document.getElementById('charity-ai-out').textContent='👨‍⚖️ وکیل داوطلب «'+name+'» ثبت شد. پس از تأیید پروانه، به پرونده‌های '+document.getElementById('cl-spec')?.value+' دسترسی خواهید داشت.';
+}
+async function renderCharityBoard(){
+  const list=document.getElementById('charity-cases-list');
+  const empty=document.getElementById('charity-empty');
+  if(!list)return;
+  const all=await dbGetAll('charity');
+  const cases=all.filter(c=>c.type==='need'&&c.status!=='closed');
+  if(!cases.length){list.innerHTML='';if(empty)empty.style.display='block';return;}
+  if(empty)empty.style.display='none';
+  list.innerHTML=cases.map(c=>`
+    <div class="charity-card">
+      <div class="charity-card-head">
+        <div style="flex:1">
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">${c.subject}</div>
+          <span class="charity-tag ${c.priority==='urgent'?'tag-urgent':'tag-normal'}">${c.priority==='urgent'?'فوری':'عادی'}</span>
+          <span class="charity-tag tag-matched" style="margin-right:6px">${CHARITY_STATUS[c.status]||c.status}</span>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:8px">${c.desc?.slice(0,120)}${c.desc?.length>120?'...':''}</div>
+      <div style="font-size:10px;color:var(--text3)">📍 ${c.province||'نامشخص'} · ${c.aiNote||'در انتظار تطبیق'}</div>
+      ${c.status==='published'?`<button class="btn-full" style="margin-top:10px;font-size:12px;padding:10px" onclick="acceptCharityCase(${c.id})">⚖️ پذیرش پرونده (وکیل احراز‌شده)</button>`:''}
+    </div>`).join('');
+}
+async function acceptCharityCase(id){
+  const all=await dbGetAll('charity');
+  const c=all.find(x=>x.id===id);
+  if(!c)return;
+  c.status='matched';c.matchedAt=Date.now();
+  await dbPut('charity',c);
+  updatePipeline(4);
+  showToast('✅ پرونده پذیرفته شد. پیگیری آغاز شد.');
+  document.getElementById('charity-ai-out').textContent='🤝 پرونده «'+c.subject+'» با وکیل داوطلب تطبیق داده شد. مرحله پیگیری فعال است.';
+  renderCharityBoard();
+}
+async function runCharityAI(){
+  const all=await dbGetAll('charity');
+  const needs=all.filter(c=>c.type==='need');
+  const lawyers=all.filter(c=>c.type==='lawyer');
+  const urgent=needs.filter(c=>c.priority==='urgent').length;
+  const pub=needs.filter(c=>c.status==='published').length;
+  document.getElementById('charity-ai-out').textContent=
+    `📊 گزارش ایجنت:\n• ${needs.length} درخواست · ${urgent} فوری\n• ${lawyers.length} وکیل داوطلب · ${pub} پرونده منتظر وکیل\n• پیشنهاد: اولویت با پرونده‌های خانواده و معیشت`;
+  updatePipeline(2);
+}
+
+// ====== CAREERS / HR AI ======
+let careerStep=1,hrMsgs=[],hrQ=0;
+const HR_QUESTIONS=[
+  'سلام! من سارا، کارشناس منابع انسانی هوشمند موسسه هستم. لطفاً در چند جمله بگویید چرا برای این موقعیت مناسب هستید؟',
+  'در تهران چه منطقه‌ای ساکن هستید و آیا امکان حضور در دفتر مرکزی را دارید؟',
+  'یک موقعیت چالش‌برانگیز کاری که داشتید را شرح دهید و چگونه حلش کردید؟',
+  'حقوق و شرایط همکاری پیشنهادی شما چیست؟'
+];
+const SKILL_TESTS={
+  'وکیل / مشاور حقوقی':[{q:'ماده مربوط به مهریه در قانون مدنی؟',opts:['۱۰۸۲','۱۰۸۵','۱۱۰۱','۱۱۵۸'],a:0}],
+  'کارپرداز اداری':[{q:'مدارک ثبت شرکت سهامی خاص شامل؟',opts:['فقط اساسنامه','اساسنامه و اظهارنامه','فقط اظهارنامه','هیچ‌کدام'],a:1}],
+  'default':[{q:'مهارت اصلی شما در همکاری تیمی؟',opts:['ارتباط مؤثر','انعطاف','رهبری','همه موارد'],a:3}]
+};
+function careerNext(n){
+  if(n===2){
+    const name=document.getElementById('cr-name')?.value?.trim();
+    const phone=document.getElementById('cr-phone')?.value?.trim();
+    if(!name||!phone){showToast('نام و شماره تماس الزامی است');return;}
+  }
+  if(n===3){
+    const mot=document.getElementById('cr-motivation')?.value?.trim();
+    if(!mot||mot.length<15){showToast('انگیزه همکاری را کامل بنویسید');return;}
+  }
+  careerStep=n;
+  [1,2,3,4].forEach(i=>{const el=document.getElementById('career-step-'+i);if(el)el.style.display=i===n?'block':'none';});
+  document.querySelectorAll('#career-steps .career-step').forEach((s,i)=>{s.classList.toggle('done',i<n-1);s.classList.toggle('active',i===n-1);});
+  if(n===4)renderCareerTest();
+}
+function initCareerHR(){
+  hrMsgs=[];hrQ=0;
+  const chat=document.getElementById('hr-chat');if(!chat)return;
+  addHRMsg('ai',HR_QUESTIONS[0]);
+}
+function addHRMsg(role,text){
+  const chat=document.getElementById('hr-chat');if(!chat)return;
+  const d=document.createElement('div');d.className='hr-msg '+role;d.textContent=text;
+  chat.appendChild(d);chat.scrollTop=chat.scrollHeight;
+  hrMsgs.push({role,text});
+}
+function sendHRMsg(){
+  const inp=document.getElementById('hr-input');
+  const text=inp?.value?.trim();if(!text)return;
+  addHRMsg('user',text);inp.value='';
+  hrQ++;
+  setTimeout(()=>{
+    if(hrQ<HR_QUESTIONS.length)addHRMsg('ai',HR_QUESTIONS[hrQ]);
+    else addHRMsg('ai','ممنون! پاسخ‌های شما ثبت شد. لطفاً به آزمون مهارت بروید. ✅');
+  },800);
+}
+function renderCareerTest(){
+  const role=document.getElementById('cr-role')?.value||'default';
+  const tests=SKILL_TESTS[role]||SKILL_TESTS.default;
+  document.getElementById('cr-test-area').innerHTML=tests.map((t,i)=>`
+    <div class="form-group"><label class="form-label">${t.q}</label>
+    <select class="form-select" id="cr-test-${i}">${t.opts.map((o,j)=>`<option value="${j}">${o}</option>`).join('')}</select></div>`).join('');
+  window._careerTests=tests;
+}
+async function submitCareer(){
+  const data={
+    name:document.getElementById('cr-name')?.value,
+    city:document.getElementById('cr-city')?.value,
+    role:document.getElementById('cr-role')?.value,
+    exp:document.getElementById('cr-exp')?.value,
+    phone:document.getElementById('cr-phone')?.value,
+    motivation:document.getElementById('cr-motivation')?.value,
+    salary:document.getElementById('cr-salary')?.value,
+    type:document.getElementById('cr-type')?.value,
+    hrInterview:hrMsgs,
+    status:'hr_review',
+    time:Date.now()
+  };
+  const tests=window._careerTests||[];
+  let score=0;tests.forEach((t,i)=>{if(+document.getElementById('cr-test-'+i)?.value===t.a)score++;});
+  data.testScore=score+'/'+tests.length;
+  data.tehranPriority=data.city==='تهران';
+  await dbSave('careers',data);
+  showToast('✅ پیشنهاد همکاری ثبت شد. نتیجه ظرف ۷۲ ساعت اعلام می‌شود.');
+  careerNext(1);
+  document.querySelectorAll('#career-step-1 input,#career-step-1 select,#career-step-2 textarea,#career-step-2 input').forEach(e=>{if(e)e.value='';});
+}
+
+// ====== AI CHAT ======
+function getAISystem(){return `تو دستیار هوشمند موسسه کارپردازی، کارگذاری، اداری و نیابت حقوقی محمود هستی — پلتفرم پرواز
+مدیر: سیدمحمود میرکمالی (متخصص هوش مصنوعی، بلاک‌چین، بازارهای مالی، ۸ سال تجربه)
+خدمات موسسه: حقوقی/نیابت، کارپردازی اداری، بورس، بیمه، ارز دیجیتال
+
+تخصص‌های پاسخ‌دهی:
+- حقوقی: قوانین مدنی، کیفری، خانواده، ملکی، تجاری ایران
+- بیمه: همه انواع بیمه، محاسبه حق بیمه، راهنمای خسارت
+- بورس: تحلیل، مفاهیم، راهنمای سرمایه‌گذاری
+- ارز دیجیتال: پروژه‌ها، مدیریت ریسک، سبدگردانی
+- اداری: راهنمای مراجعه به ادارات، مدارک لازم
+
+قوانین پاسخ:
+۱. پاسخ فارسی روان، کوتاه و عملی
+۲. در پایان به صورت طبیعی به خدمات موسسه هدایت کن
+۳. هرگز نگو هوش مصنوعی هستی مگر مستقیم پرسیده شود`;}
+
+let chatMsgs=[];
+const chatDiv=document.getElementById('chat-messages');
+const chatInput=document.getElementById('chat-input');
+
+function addMsg(role,text,save=true){
+  if(chatDiv.querySelector('.msg-welcome'))chatDiv.querySelector('.msg-welcome').remove();
+  const d=document.createElement('div');d.className=`msg ${role}`;
+  const av=document.createElement('div');av.className='msg-av';av.textContent=role==='ai'?'🤖':'👤';
+  const wrap=document.createElement('div');wrap.className='msg-content';
+  const b=document.createElement('div');b.className='msg-bubble';
+  b.innerHTML=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+  const t=document.createElement('div');t.className='msg-time';
+  t.textContent=new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});
+  wrap.appendChild(b);wrap.appendChild(t);d.appendChild(av);d.appendChild(wrap);
+  chatDiv.appendChild(d);chatDiv.scrollTop=chatDiv.scrollHeight;
+  if(save){dbSave('chats',{role,content:text});}
+}
+
+function showTyping(){
+  const d=document.createElement('div');d.className='msg ai';d.id='typing';
+  d.innerHTML='<div class="msg-av">🤖</div><div class="msg-content"><div class="msg-bubble"><div class="typing-ind"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div></div>';
+  chatDiv.appendChild(d);chatDiv.scrollTop=chatDiv.scrollHeight;
+}
+
+chatInput.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px';});
+chatInput.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat();}});
+
+function quickMsg(q){chatInput.value=q;sendChat();}
+
+async function sendChat(){
+  const text=chatInput.value.trim();if(!text)return;
+  const access=canSendMessage();
+  if(!access.ok){updateQuotaUI();showToast(access.msg);return;}
+  addMsg('user',text);chatMsgs.push({role:'user',content:text});
+  countUserMessage();
+  chatInput.value='';chatInput.style.height='auto';
+  document.getElementById('chat-send').disabled=true;
+  showTyping();
+  const sub=getActiveSubscription();
+  const maxTokens=sub?.type==='lifetime'?LIFETIME_MAX_TOKENS:1000;
+  try{
+    const apiUrl=getApiUrl();
+    if(location.protocol==='file:'){
+      throw new Error('file');
+    }
+    const r=await fetch(apiUrl,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:maxTokens,system:getAISystem(),messages:chatMsgs})
+    });
+    const data=await r.json();
+    if(!r.ok){
+      const errMsg=data.error?.message||data.error||(typeof data.error==='string'?data.error:null)||`خطای سرور (${r.status})`;
+      throw new Error(errMsg);
+    }
+    const reply=data.content?.[0]?.text||'پاسخی دریافت نشد. دوباره امتحان کنید.';
+    chatMsgs.push({role:'assistant',content:reply});
+    document.getElementById('typing')?.remove();
+    addMsg('ai',reply);
+  }catch(e){
+    document.getElementById('typing')?.remove();
+    const msg=e.message==='file'
+      ?'⚠️ فایل HTML را مستقیم باز نکنید. سرور را با start.bat اجرا کنید و به http://localhost:3000 بروید.'
+      :e.message==='Failed to fetch'
+      ?'⚠️ سرور در دسترس نیست. start.bat را اجرا کنید یا اتصال اینترنت را بررسی کنید.'
+      :`⚠️ ${e.message||'خطا در اتصال. لطفاً دوباره امتحان کنید.'}`;
+    addMsg('ai',msg);
+  }
+  document.getElementById('chat-send').disabled=false;
+}
+
+async function clearChat(){
+  if(!confirm('تاریخچه پاک شود؟'))return;
+  await dbClear('chats');chatMsgs=[];
+  chatDiv.innerHTML='';initChat();showToast('🗑 پاک شد');
+}
+
+async function initChat(){
+  const hist=await dbGetAll('chats');
+  chatMsgs=[];
+  if(hist.length>0){
+    hist.slice(-20).forEach(m=>{
+      addMsg(m.role,m.content,false);
+      chatMsgs.push({role:m.role==='ai'?'assistant':m.role,content:m.content});
+    });
+    chatDiv.scrollTop=chatDiv.scrollHeight;
+  }else{
+    const w=document.createElement('div');w.className='msg-welcome';
+    w.style.cssText='text-align:center;padding:30px 16px;';
+    w.innerHTML='<div style="font-size:36px;margin-bottom:12px">🤖</div><div style="font-size:14px;font-weight:700;color:var(--gold);margin-bottom:6px">دستیار هوشمند پرواز</div><div style="font-size:12px;color:var(--text3);line-height:1.7">حقوق · بیمه · بورس · رمزارز · اداری · خیریه<br>۷ پیام رایگان · ثبت نظر +۱۰ · معرفی = اشتراک رایگان</div>';
+    chatDiv.appendChild(w);
+  }
+}
+
+// ====== PWA ======
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();deferredPrompt=e;
+  if(!localStorage.getItem('install-dismissed'))
+    setTimeout(()=>document.getElementById('install-banner').classList.add('show'),4000);
+});
+document.getElementById('ib-btn').addEventListener('click',async()=>{
+  if(!deferredPrompt)return;
+  deferredPrompt.prompt();
+  const{outcome}=await deferredPrompt.userChoice;
+  if(outcome==='accepted')showToast('✅ اپ پرواز نصب شد!');
+  deferredPrompt=null;document.getElementById('install-banner').classList.remove('show');
+});
+function dismissInstall(){document.getElementById('install-banner').classList.remove('show');localStorage.setItem('install-dismissed','1');}
+window.addEventListener('appinstalled',()=>showToast('✅ اپ با موفقیت نصب شد!'));
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js'));
+window.addEventListener('offline',()=>showToast('📵 آفلاین — حالت آفلاین فعال'));
+window.addEventListener('online',()=>showToast('✅ اتصال برقرار شد'));
+
+// ====== INIT ======
+async function init(){
+  if(typeof applySiteBranding==='function')applySiteBranding();
+  await openDB();
+  const hist=await dbGetAll('chats');
+  const userMsgs=hist.filter(m=>m.role==='user').length;
+  if(userMsgs>userState.msgCount){userState.msgCount=userMsgs;saveUser(userState);}
+  registerReferralFromUrl();
+  const ref=localStorage.getItem('parvaaz-referred');
+  if(ref&&ref!==userState.referralCode){
+    const key='parvaaz-ref-'+ref;
+    if(!localStorage.getItem(key)){
+      localStorage.setItem(key,'1');
+      try{
+        const refs=JSON.parse(localStorage.getItem('parvaaz-ref-stats-'+ref)||'{"total":0,"paid":0}');
+        refs.total++;localStorage.setItem('parvaaz-ref-stats-'+ref,JSON.stringify(refs));
+      }catch(e){}
+    }
+  }
+  if(userState.referralCode){
+    try{
+      const stats=JSON.parse(localStorage.getItem('parvaaz-ref-stats-'+userState.referralCode)||'null');
+      if(stats){userState.referralsTotal=stats.total||0;userState.referralsPaid=stats.paid||0;saveUser(userState);applyReferralRewards();}
+    }catch(e){}
+  }
+  renderCases();
+  initChat();
+  updateProfileUI();
+  updateQuotaUI();
+  renderReferralTiers();
+  const page=new URLSearchParams(location.search).get('page');
+  if(page&&document.getElementById('page-'+page))goPage(page);
+}
+init();
+</script>
+</body>
+</html>

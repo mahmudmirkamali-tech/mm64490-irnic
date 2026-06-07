@@ -1,0 +1,21 @@
+{
+  "primaryDomain": "presf.ir",
+  "domains": [
+    "presf.ir",
+    "www.presf.ir"
+  ],
+  "siteName": "موسسه محمود | پلتفرم پرواز",
+  "hosting": {
+    "provider": "netafraz",
+    "panel": "cpanel",
+    "username": "presfir",
+    "server": "server41c.irwebspace.com",
+    "cpanelUrl": "https://server41c.irwebspace.com:2083",
+    "documentRoot": "public_html",
+    "nameservers": [
+      { "host": "irns1.netafraz.com", "ip": "185.78.22.2" },
+      { "host": "irns2.netafraz.com", "ip": "149.202.28.110" }
+    ],
+    "siteIps": ["185.106.201.36", "185.106.201.40"]
+  }
+}

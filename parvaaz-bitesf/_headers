@@ -1,0 +1,13 @@
+﻿/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/manifest.json
+  Content-Type: application/manifest+json
+
+/sw.js
+  Cache-Control: no-cache
+
+/api/*
+  Access-Control-Allow-Origin: https://presf.ir, https://www.presf.ir

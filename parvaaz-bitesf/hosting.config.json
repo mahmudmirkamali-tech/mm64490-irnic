@@ -1,0 +1,11 @@
+{
+  "ftp": {
+    "host": "server41c.irwebspace.com",
+    "username": "presfir",
+    "password": "",
+    "remotePath": "/public_html",
+    "useSsl": false
+  },
+  "domain": "presf.ir",
+  "cpanelUrl": "https://server41c.irwebspace.com:2083"
+}
